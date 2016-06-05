@@ -28,14 +28,30 @@
 						<img src="/images/ivylguelogo.jpg" style="height:37.5px;width:51.5px;float:left;"/>
 						<div class="collapse navbar-collapse">
 							<ul class="nav navbar-nav navbar-left" style="float:left;">
-									{{# each navLinks}}
-									<li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-										<a href="{{ href }}">{{ label }}</a>
-									</li>
-								{{/each}}
-							</ul>
+                                    {{#if user.isVerified}}
+                                        {{#ifeq user.userRole "Admin"}}
+                                            {{# each navLinksAdmin}}
+                                                <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                <a href="{{ href }}">{{ label }}</a>
+                                                </li>
+                                            {{/each}}
+                                        {{else}}
+                                            {{# each navLinksUser}}
+                                                <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                    <a href="{{ href }}">{{ label }}</a>
+                                                </li>
+                                            {{/each}}
+                                        {{/ifeq}}
+                                    {{else}}
+                                        {{# each navLinksGuest}}
+                                            <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                <a href="{{ href }}">{{ label }}</a>
+                                            </li>
+                                        {{/each}}
+                                    {{/if}}
+                            </ul>
 							<ul class="nav navbar-nav navbar-right" style="float:right;">
-								{{#if user}}
+								{{#if user.isVerified}}
                                 <li style="color:#fff;"> {{user.name.first}} {{user.name.last}}</li>
 								<li><a href="/signout">Sign Out</a></li>
 								{{else}}
@@ -58,22 +74,22 @@
 			<div id="flash-messages" class="container">
 				{{#if messages.info}}
 				<div class="alert alert-info">
-						{{{flashMessages messages.info}}}
+						{{ messages.info}}
 				</div>
 				{{/if}}
 				{{#if messages.success}}
 				<div class="alert alert-success">
-						{{{flashMessages messages.success}}}
+						{{ messages.success}}
 				</div>
 				{{/if}}
 				{{#if messages.warning}}
 				<div class="alert alert-warning">
-						{{{flashMessages messages.warning}}}
+						{{ messages.warning}}
 				</div>
 				{{/if}}
 				{{#if messages.error}}
 				<div class="alert alert-danger">
-						{{{flashMessages messages.error}}}
+						{{ messages.error}}
 				</div>
 				{{/if}}
 			</div>
@@ -83,6 +99,7 @@
 		</div>
 		<div class="container">
 			<div id="footer">
+                {{#ifeq user.userRole "Admin"}}<p>For admin view please click, <a href="/keystone">here</a>.</p>{{/ifeq}}
 				<p>2016 &copy; of Skyline IvyLeague Apartments, Edachira, Kakkanad, Kochi.</p>
 			</div>
 		</div>

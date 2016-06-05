@@ -37,7 +37,11 @@ require('./models');
  
 keystone.set('routes', require('./routes'));
 
-
+keystone.set('nav', {
+	'Users': 'users',
+    'Events': 'events',
+    'Notices': 'notices' 
+});
 /*keystone.set('nav', {
 	'blogs': ['posts', 'post-categories', 'post-comments'],
 	'galleries': 'galleries',

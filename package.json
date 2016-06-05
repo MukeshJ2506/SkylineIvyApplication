@@ -13,6 +13,7 @@
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.5",
     "keystone": "latest",
+    "moment": "^2.13.0",
     "underscore": "latest"
   },
   "engines": {

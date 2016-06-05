@@ -34,9 +34,9 @@ exports = module.exports = function(app) {
     app.get('/', routes.views.index);
     
     //Session Routes
-   // app.all('/memberapplication', routes.views.session.memberapplication);
+    app.all('/memberapplication', routes.views.session.memberapplication);
 	app.all('/signin', routes.views.session.signin);
-	//app.get('/signout', routes.views.session.signout);
+	app.get('/signout', routes.views.session.signout);
     
     //Auth Routes
     // Authentication

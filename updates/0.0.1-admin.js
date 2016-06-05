@@ -9,7 +9,12 @@ exports = module.exports = function(done) {
         password: 'admin',
         userRole: 'Admin',
         apartmentNo: '4F',
-        towerName: 'Princeton'
+        towerName: 'Princeton',
+        isVerified:true,
+        isAdmin:true,
+        isAssociation:true,
+        stayType:"Owner",
+        mobileNo:8129377669
     }).save(done);
     
 };

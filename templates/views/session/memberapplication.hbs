@@ -1,0 +1,20 @@
+{{!< default}}
+<div class="container">
+	<div class="something">
+		<h1>Please fill up the application form and submit for verification by admin.</h1>
+        <form method="post" action="/memberapplication">
+        <p><input type="text" placeholder="Please enter you First Name" name="firstname" required/></p>
+        <p><input type="text" placeholder="Please enter you Last Name" name="lastname" required/></p>
+		<p><input type="email" placeholder="Please enter you Email" name="email" required/></p>
+        <p><input type="password" placeholder="Please enter you Password" name="password" required/></p>
+        <p><input type="password" placeholder="Please re-enter you Password" name="confirmpassword" required/></p>
+        <p><input type="text" placeholder="Please enter you Apartment Name" name="apartmentNo" required/></p>
+        <p><select name="towerName" required><option value="">Tower Name</option><option value="Columbia">Columbia</option><option value="Cornell">Cornell</option><option value="Harvard">Harvard</option><option value="Princeton">Princeton</option><option value="Sylvania">Sylvania</option><option value="Yale">Yale</option></select></p>
+        <p><input type="tel" placeholder="Please enter you Mobile No" name="mobileNo" /></p>
+        <p><textarea placeholder="Please enter you Present Address" name="presentAddress"></textarea></p>
+        <p><select name="stayType" required><option value="">Stay Type</option><option value="Owner">Owner</option><option value="Rented">Rented</option></select></p>
+        <input type="hidden" name='action' value='Register'/>
+        <p> <button type="submit" class=".btn .btn-block .btn-primary .btn-submit">Register</button></p>
+        </form>
+	</div>
+</div>
