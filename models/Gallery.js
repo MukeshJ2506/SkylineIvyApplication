@@ -13,8 +13,18 @@ var Gallery = new keystone.List('Gallery', {
 Gallery.add({
 	name: { type: String, required: true },
 	publishedDate: { type: Date, default: Date.now },
-	heroImage: { type: Types.CloudinaryImage },
-	images: { type: Types.CloudinaryImages }
+	images: {
+	type: Types.LocalFile,
+	dest: './upload/files',
+	prefix: '/files/',
+    allowedTypes: [
+        'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'
+    ],
+	filename: function(item, file){
+        console.log(item.files);
+		return item.id + '.' + file.extension
+	}
+}
 });
 
 Gallery.register();

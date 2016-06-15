@@ -13,14 +13,19 @@
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.5",
     "keystone": "latest",
+    "keystone-nodemailer": "^0.1.1",
     "moment": "^2.13.0",
-    "underscore": "latest"
+    "nodemailer": "^2.4.2",
+    "underscore": "latest",
+    "xoauth2": "^1.1.0"
   },
   "engines": {
     "node": "~4.2.0",
     "npm": "~2.14.3"
   },
   "scripts": {
-    "start": "ivyLeagueApp.js"
+    "start": "node ivyLeagueApp",
+    "postinstall": "bower install",
+    "prestart": "npm install"
   }
 }

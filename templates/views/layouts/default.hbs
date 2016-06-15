@@ -2,15 +2,12 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>skylineivyleague</title>
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<link href="/styles/site.min.css" rel="stylesheet">
-
-		{{!-- This file provides the default styling for the KeystoneJS Content Editor
-			- only renders when user is logged in and admin--}}
-		{{{isAdminEditorCSS user}}}
+		<!--link href="/styles/site.min.css" rel="stylesheet"-->
+        <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
 		{{!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
 		//- Safely remove this block if you are not targeting IE8 --}}
@@ -23,25 +20,19 @@
 	<body>
 		<div id="header">
 			<div class="container">
-				<div role="navigation" class="navbar navbar-default">
+				<div role="navigation" class="navbar navbar-inverse">
 					<div class="container-fluid">
-						<img src="/images/ivylguelogo.jpg" style="height:37.5px;width:51.5px;float:left;"/>
 						<div class="collapse navbar-collapse">
-							<ul class="nav navbar-nav navbar-left" style="float:left;">
+							<ul class="nav navbar-nav navbar-left" >
+                                    <li>
+                                        <img src="/images/ivylguelogo.jpg" style="height:49.5px;"/>
+                                    </li>
                                     {{#if user.isVerified}}
-                                        {{#ifeq user.userRole "Admin"}}
-                                            {{# each navLinksAdmin}}
-                                                <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
-                                                <a href="{{ href }}">{{ label }}</a>
-                                                </li>
-                                            {{/each}}
-                                        {{else}}
                                             {{# each navLinksUser}}
                                                 <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
                                                     <a href="{{ href }}">{{ label }}</a>
                                                 </li>
                                             {{/each}}
-                                        {{/ifeq}}
                                     {{else}}
                                         {{# each navLinksGuest}}
                                             <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
@@ -50,16 +41,24 @@
                                         {{/each}}
                                     {{/if}}
                             </ul>
-							<ul class="nav navbar-nav navbar-right" style="float:right;">
+							<ul class="nav navbar-nav navbar-right" >
 								{{#if user.isVerified}}
-                                <li style="color:#fff;"> {{user.name.first}} {{user.name.last}}</li>
-								<li><a href="/signout">Sign Out</a></li>
+                                 <li role="presentation" class="dropdown">
+                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> {{user.name.first}} {{user.name.last}}  <span class="caret"></span>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/me">My Profile</a></li> 
+                                            <li><a href="/me/view/blog">My Blogs</a></li>
+                                            <li><a href="/me/view/grievance">My Requests</a></li>
+                                            <li><a href="/me/view/realestate">My Real Estate</a></li>
+                                            <li><a href="/changepassword">Change Password</a></li>
+                                           <li><a href="/signout">Sign Out</a></li>
+                                        </ul>
+                                     </a></li>								
 								{{else}}
 								<li><a href="/signin">Sign In</a></li>
                                 <li><a href="/memberapplication">Apply Membership</a></li>
 								{{/if}}
-							</ul>
-                            <span style="clear:both;"></span>
+                            </ul>
 						</div>
 					</div>
 				</div>
@@ -103,16 +102,9 @@
 				<p>2016 &copy; of Skyline IvyLeague Apartments, Edachira, Kakkanad, Kochi.</p>
 			</div>
 		</div>
-		{{!--
-			//- jQuery 1.11.3 is included by default, and required by both Bootstrap
-			//- and the KeystoneJS Content Editor. If you are not targeting IE8,
-			//- you can upgrade to 2.1.4 (also bundled) for better performance.
-		--}}
-		<script src="/js/lib/jquery/jquery.min.js"></script>
-		{{!--
-			//- Customise which Bootstrap javascript files are served by including
-			//- them specifically here, instead of bootstrap-3.3.5.min.js
-		--}}
-		{{{isAdminEditorJS user}}}
+		
+		<script src="bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		
 	</body>
 </html>

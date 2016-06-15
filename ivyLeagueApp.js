@@ -1,5 +1,10 @@
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
+//require('keystone-nodemailer');
+//var xoauth2 = require('xoauth2');
+//var nodemailer=require('nodemailer');
+//var transporter = nodemailer.createTransport('smtps://mukesh.jayaram%40gmail.com:pass@smtp.gmail.com');
+
 keystone.init({
 
   'name': 'Skyline Ivy League',
@@ -18,7 +23,7 @@ keystone.init({
 		helpers: new require('./templates/views/helpers')(),
 		extname: '.hbs'
   }).engine,
-  /*'emails': 'templates/emails', */   
+  'emails': 'templates/emails',    
   
   'auto update': true,
   'mongo': process.env.MONGO_URI || 'mongodb://localhost/skyline-ivy-league-app',
@@ -40,7 +45,12 @@ keystone.set('routes', require('./routes'));
 keystone.set('nav', {
 	'Users': 'users',
     'Events': 'events',
-    'Notices': 'notices' 
+    'Notices': 'notices',
+    'Blogs': 'blogs',
+    'Enquiry': 'Enquiry',
+    'Real Estate':'Realestate',
+    'Key Contacts':'keycontacts',
+    'Gallery':'Gallery'
 });
 /*keystone.set('nav', {
 	'blogs': ['posts', 'post-categories', 'post-comments'],
@@ -50,5 +60,20 @@ keystone.set('nav', {
     'events': ['events','event-categories'],
     'members': ['users', 'type']
 });*/
+
+/*keystone.set('email nodemailer', {
+    service: 'gmail',
+    auth: {
+        xoauth2: xoauth2.createXOAuth2Generator({
+            user: 'Ivyleagueownersassociation@gmail.com',
+            clientId: ' 524403321571-c6hi41bvr5pq09t79lqcmh676k8stbn7.apps.googleusercontent.com ',
+            clientSecret: ' WToiJiETsz0p9OfSiUvuXg58',
+            refreshToken:'1/IRdV0KgGYyF3L2iJxB7dnt6Ze4jGPE_Kmbaxfcb5RAs',
+            accessToken:'ya29.Ci_7AgHVVav4IQf1fk_l0vB2eET9Vv_Z8sJhI7yRoLxQ-mkKhU8TGyou-m0x0mt4yw'
+            
+        })
+    }
+});*/
+
  
 keystone.start();

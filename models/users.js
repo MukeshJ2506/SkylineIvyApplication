@@ -29,8 +29,8 @@ User.add({
  * Relationships
  */
 
-User.relationship({ ref: 'Post', path: 'posts', refPath: 'author' });
-
+User.relationship({ ref: 'Blogs', path: 'blogs', refPath: 'author' });
+User.relationship({ ref: 'Realestate', path: 'realestate', refPath: 'advertisor' });
 
 // Provide access to Keystone
 User.schema.virtual('canAccessKeystone').get(function() {

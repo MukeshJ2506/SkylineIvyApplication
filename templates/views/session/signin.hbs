@@ -1,13 +1,14 @@
 {{!< default}}
 <div class="container">
-	<div class="something">
-		<h1>If you are an existing user please sign in to Ivy League Application</h1>
+		<h3>If you are an existing user please sign in to Ivy League Application</h3>
         <form method="post" action="/signin">
-		<p><input type="email" placeholder="Please enter you Email" name="email"/></p>
-        <p><input type="password" placeholder="Please enter you Password" name="password"/></p>
-        <p> If you are not a member, please apply for membership verification <a href="/memberapplication">here</a>.</p>
+		<div class="form-group">
+            <input type="email" required class="form-control" placeholder="Please enter you Email" name="email"/>
+        </div>
+        <div class="form-group"><input type="password" required class="form-control" placeholder="Please enter you Password" name="password"/></div>
+        <div class="form-group"> If you are not a member, please apply for membership verification <a href="/memberapplication">here</a>.</div>
         <input type="hidden" name='action' value='signin'/>
-        <p> <button type="submit" class=".btn .btn-block .btn-primary .btn-submit">Sign In</button></p>
+        <div class="form-actions"><button type="submit" class="btn btn-block btn-primary btn-submit">Sign In</button></div>
         </form>
 	</div>
 </div>

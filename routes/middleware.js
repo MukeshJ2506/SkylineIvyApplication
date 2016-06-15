@@ -10,32 +10,31 @@ exports.initLocals = function(req, res, next) {
     var locals = res.locals;
         
     // Add your own local variables here
-    locals.navLinksAdmin = [
+   /* locals.navLinksAdmin = [
 		{ label: 'Home',		key: 'home',		href: '/' },
 		{ label: 'Events',		key: 'events',		href: '/events' },
         { label: 'Notices',		key: 'notices',		href: '/notices' },
 		{ label: 'Blog',		key: 'blog',		href: '/blog' },
         { label: 'Real Estate',		key: 'realestate',		href: '/realestate' },
-        { label: 'RE Request',		key: 'realestaterequest',		href: '/realestaterequest' },
 		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
 		{ label: 'Key Contacts',		key: 'keycontacts',		href: '/keycontacts' }
 	];
-    
+    */
     locals.navLinksUser = [
 		{ label: 'Home',		key: 'home',		href: '/' },
 		{ label: 'Events',		key: 'events',		href: '/events' },
         { label: 'Notices',		key: 'notices',		href: '/notices' },
 		{ label: 'Blog',		key: 'blog',		href: '/blog' },
         { label: 'Real Estate',		key: 'realestate',		href: '/realestate' },
-        { label: 'RE Request',		key: 'realestaterequest',		href: '/realestaterequest' },
 		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
+        { label: 'Grievance/Service',		key: 'service',		href: '/service' },
 		{ label: 'Key Contacts',		key: 'keycontacts',		href: '/keycontacts' }
 	];
 
     locals.navLinksGuest = [
 		{ label: 'Home',		key: 'home',		href: '/' },
         { label: 'Real Estate',		key: 'realestate',		href: '/realestate' },
-        { label: 'Contact Association',		key: 'contactassociation',		href: '/contactassociation' }
+        { label: 'Contact Association',		key: 'enquiry',		href: '/enquiry' }
 	];
     
 	locals.user = req.user;

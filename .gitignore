@@ -1,2 +1,5 @@
 node_modules
 updates
+upload
+public/bower_components
+test.js

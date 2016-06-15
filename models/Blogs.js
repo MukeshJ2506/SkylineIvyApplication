@@ -6,15 +6,18 @@ var Types = keystone.Field.Types;
  * ==========
  */
 
-var Post = new keystone.List('Post', {
+var Blogs = new keystone.List('Blogs', {
 	map: { name: 'title' },
+    track:true,
+    nocreate:true,
+    noedit:true,
 	autokey: { path: 'slug', from: 'title', unique: true }
 });
 
-Post.add({
-	title: { type: String, required: true },
+Blogs.add({
+	title: { type: String, required: true, initial:true },
 	state: { type: Types.Select, options: 'Draft, Published, Archived', default: 'Draft', index: true },
-	author: { type: Types.Relationship, ref: 'Y', index: true },
+	author: { type: Types.Relationship, ref: 'User', index: true },
 	publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'Published' } },
 	content: {
 		brief: { type: Types.Html, wysiwyg: true, height: 150 },
@@ -22,9 +25,9 @@ Post.add({
 	}
 });
 
-Post.schema.virtual('content.full').get(function() {
+Blogs.schema.virtual('content.full').get(function() {
 	return this.content.extended || this.content.brief;
 });
 
-Post.defaultColumns = 'title, state|20%, author|20%, publishedDate|20%';
-Post.register();
+
+Blogs.register();

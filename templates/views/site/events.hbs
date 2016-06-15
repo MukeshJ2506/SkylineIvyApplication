@@ -1,0 +1,21 @@
+{{!< default}}
+<div class="container">
+	<h3>Events at IvyLeague</h3>
+			{{# each data.events}}
+              <div class="panel panel-primary">
+                <div class="panel-heading"> 
+                    <h3 class="panel-title">Name of Event: {{name}}</h3> 
+                </div> 
+                <div class="panel-body"> 
+                    <h5><strong>Frequency of Event:</strong> {{frequency}}</h5>
+                    <h5><strong>Type of Event:</strong> {{eventType}}</h5>
+                    <h5><strong>Start date of Event:</strong> {{startDate}}</h5>
+                    <h5><strong>Tentative end date of Event:</strong> {{endDate}}</h5>
+                    <h5><strong>Venue of Event:</strong> {{venue}}</h5>
+                    <h5><strong>Event Description: </strong></h5>
+                    <div>{{{description}}}</div> 
+                </div> 
+            </div>
+            {{/each}}
+    {{>pagination}}
+</div>

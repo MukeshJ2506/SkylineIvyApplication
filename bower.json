@@ -1,0 +1,25 @@
+{
+  "name": "skyline-ivy-league-app",
+  "description": "Application for Skyline Ivy League",
+  "main": "",
+  "authors": [
+    "mukeshj2506 <mukesh.jayaram@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MukeshJ2506/SkylineIvyApplication",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "jquery": "1.9.1 - 2"
+  },
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "bootstrap": "^3.3.6"
+  }
+}
