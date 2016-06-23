@@ -1,14 +1,13 @@
 {{!< default}}
-	<h3>Events at IvyLeague</h3>
-			{{# each data.notices}}
+	<h3>Minutes of Meetings held by MC members at IvyLeague</h3>
+			{{# each data.minutes}}
             <div class="panel panel-primary">
                 <div class="panel-heading"> 
                     <h3 class="panel-title">Subject: {{name}}</h3> 
                 </div> 
                 <div class="panel-body"> 
-                    <h5><strong>Start date of Event:</strong> {{startDate}}</h5>
-                    <h5><strong>End date of Event:</strong> {{endDate}}</h5>
-                    <h5><strong>Notice Description: </strong></h5>
+                    <h5><strong>Date of meeting:</strong> {{meetingDate}}</h5>
+                    <h5><strong>Meeting Minutes: </strong></h5>
                     <div>{{{description}}}</div> 
                 </div> 
             </div>

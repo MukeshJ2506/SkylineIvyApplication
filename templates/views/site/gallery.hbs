@@ -1,32 +1,54 @@
-<div class="container">
-	<h1>Gallery</h1>
-</div>
-<div class="container">
+	<h3>Gallery</h3>
 	<!-- if galleries -->
 	{{#if galleries}}
+    <div id="links" class="row">
 		{{#each galleries}}
-		<h2>{{name}}
-			<div class="pull-right text-muted">19th May 2014</div>
-		</h2>
-		<div class="row gallery-images">
-				{{#if heroImage}}
-				<div class="col-sm-4 col-md-4 gallery-image">
-					<img src="{{cloudinaryUrl heroImage width='680' height='680'}}" class="img-rounded">
-				</div>
-				{{/if}}
-				<div class="col-sm-8 col-md-8">
-					<div class="row">
-						{{#each images}}
-						<div class="col-xs-4 col-sm-4 col-md-3 gallery-image">
-							<img src="{{cloudinaryUrl width='300' height='300'}}" class="img-rounded">
-						</div>
-						{{/each}}
-					</div>
-				</div>
-		</div>
+		<div class="col-sm-4 col-md-3">
+        <div class="thumbnail" style="border-color:#000">
+            
+            <a href="{{imageURLformatter images.path images.filename}}" title="{{caption}}" data-gallery class="img-rounded">
+                <img src="{{imageURLformatter images.path images.filename}}" alt="{{caption}}"  >
+            </a>  
+            <div class="caption text-center"><h4>{{caption}}</h4></div>
+            </div></div>
+
 		{{/each}}
+         </div>
 	{{else}}
 	<!-- else -->
 	<h3 class="text-muted">There are no image galleries yet.</h3>
 	{{/if}}
+    <!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left prev">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Previous
+                    </button>
+                    <button type="button" class="btn btn-primary next">
+                        Next
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

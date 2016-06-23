@@ -1,21 +1,65 @@
 {{!< default}}
-<div class="container">
 	<h3>Events at IvyLeague</h3>
-			{{# each data.events}}
-              <div class="panel panel-primary">
-                <div class="panel-heading"> 
-                    <h3 class="panel-title">Name of Event: {{name}}</h3> 
-                </div> 
-                <div class="panel-body"> 
-                    <h5><strong>Frequency of Event:</strong> {{frequency}}</h5>
-                    <h5><strong>Type of Event:</strong> {{eventType}}</h5>
-                    <h5><strong>Start date of Event:</strong> {{startDate}}</h5>
-                    <h5><strong>Tentative end date of Event:</strong> {{endDate}}</h5>
-                    <h5><strong>Venue of Event:</strong> {{venue}}</h5>
-                    <h5><strong>Event Description: </strong></h5>
-                    <div>{{{description}}}</div> 
-                </div> 
-            </div>
-            {{/each}}
-    {{>pagination}}
+    <div id="calendar"></div>
+    <script>
+
+	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+            header: {
+				left: 'prev',
+				center: 'title',
+                right:'next'
+			},
+			defaultDate: Date.now(),
+			editable: true,
+			eventLimit: true,// allow "more" link when too many events
+           eventRender: function(event, element, view){
+               $(element).attr({'data-toggle': "modal",'data-target': "#myModal"});
+                return (event.ranges.filter(function(range){
+                    return (event.start.isBefore(range.end) &&
+                            event.end.isAfter(range.start));}).length)>0;
+            },
+            events: function( start, end, timezone, callback ){
+                var events = {{{jsonFormatter data.events}}}; //this should be a JSON request
+                callback(events);
+            },
+            dayRender: function (date, cell) {
+        
+                var today = new Date();
+
+                if (date.format('LL') === moment(today).format('LL')) {
+                    cell.css("background-color", "#ff6600");
+                }
+
+            },
+            eventClick: function(calEvent, jsEvent, view) {
+                $("#myModalLabel").html(calEvent.title);
+                $("#myModalVenue").html("Venue: "+calEvent.venue);
+                $("#myModalBody").html(calEvent.description);
+                $(this).css('border-color', '#ff0000');
+            }
+        })
+    })
+
+    </script>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="myModalLabel">Event Details</h3>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalVenue">Venue: Modal title</h4>
+      </div>
+      <div class="modal-body" id="myModalBody">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close Details</button>
+      </div>
+    </div>
+  </div>
 </div>

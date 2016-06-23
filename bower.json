@@ -20,6 +20,9 @@
   },
   "dependencies": {
     "jquery": "^3.0.0",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "blueimp-bootstrap-image-gallery": "^3.4.2",
+    "bootstrap3-wysihtml5-bower": "^0.3.3",
+    "fullcalendar": "^2.8.0"
   }
 }

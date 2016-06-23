@@ -5,27 +5,27 @@ exports = module.exports = function(req, res) {
     var view = new keystone.View(req, res);
     var locals = res.locals;
     locals.data = {
-		keycontacts: [],
+		realestate: [],
         pagination:{}
 	};
 	
 	// locals.section is used to set the currently selected
 	// item in the header navigation.
-	locals.section = 'keycontacts';
+	locals.section = 'realestate';
     
     //Fetches the contact list
     
     view.on('init', function(next) {
 		
-		var q = keystone.list('Keycontacts').paginate({
+		var q = keystone.list('Realestate').paginate({
                 page: req.query.page || 1,
                 perPage: 10,
                 maxPages: 10
-            });
+            }).where('status','Open').sort('-createdDate').populate('advertisor');
        
 		
 		q.exec(function(err, results) {
-			locals.data.keycontacts = results.results;
+			locals.data.realestate = results.results;
             delete results.results;
             locals.data.pagination = results;
 			next(err);
@@ -33,6 +33,6 @@ exports = module.exports = function(req, res) {
 		
 	});
     
-    view.render('site/keycontacts');
+    view.render('site/realestate');
     
 }

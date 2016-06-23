@@ -1,20 +1,15 @@
-<div class="container">
-	<div class="row">
-		<div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-			<article>
+{{!< default}}
+			<article class="blog-post">
 				<p><a href="/blog">&larr; back to the blog</a></p>
 				<hr>
-				<header>
-					<h1>{{data.post.title}}</h1>
-					<h5>
-						{{{categoryList data.post.categories prefix="Posted in "}}}
-						{{#if author.name.first}}by {{author.name.first}}{{/if}}
+                <div class="blog-post-body">
+					<h2>{{data.post.title}}</h2>
+					<h5 class="post-meta">
+						{{#if data.post.author.name.first}}By {{data.post.author.name.first}} {{data.post.author.name.last}}{{/if}}
+                        &nbsp;/&nbsp;Published on : {{formatDate data.post.publishedDate}}
 					</h5>
-				</header>
-				<div class="post">
-					{{{data.post.content.extended}}}
-				</div>
+                    <div class="blog-post-text">
+                        {{{data.post.content.extended}}}
+                    </div>
+                </div>
 			</article>
-		</div>
-	</div>
-</div>

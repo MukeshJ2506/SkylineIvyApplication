@@ -14,7 +14,6 @@ var scriptTemplate = _.template('<script src="<%= src %>"></script>');
 var cssLinkTemplate = _.template('<link href="<%= href %>" rel="stylesheet">');
 var cloudinaryUrlLimit = _.template(CLOUDINARY_HOST + '/<%= cloudinaryUser %>/image/upload/c_limit,f_auto,h_<%= height %>,w_<%= width %>/<%= publicId %>.jpg');
 
-
 module.exports = function() {
 	
 	var _helpers = {};
@@ -215,8 +214,8 @@ module.exports = function() {
 	// the routes by keynames to reduce the maintenance of changing urls
 	
 	// Direct url link to a specific post
-	_helpers.postUrl = function(postSlug, options) {
-		return ('/blog/post/' + postSlug);
+	_helpers.postUrl = function(urlName, postSlug, options) {
+		return ('/'+urlName+'/post/' + postSlug);
 	};
 	
 	// might be a ghost helper
@@ -229,6 +228,12 @@ module.exports = function() {
 	_helpers.categoryUrl = function(categorySlug, options) {
 		return ('/blog/' + categorySlug);
 	};
+    _helpers.jsonFormatter = function(context) {
+    return JSON.stringify(context);
+    };
+    _helpers.formatDate = function(date) {
+    return moment(date).format('LL');
+    };
 	
 	// ### Pagination Helpers
 	// These are helpers used in rendering a pagination system for content
@@ -293,6 +298,13 @@ module.exports = function() {
                 nextPage = totalPages;
             }
             return _helpers.pageUrl(urlName, nextPage);
+        };
+    
+    
+        _helpers.imageURLformatter = function(urlName, fileName){
+            urlName = urlName.slice(9);
+            return  '../'+urlName+'/' + fileName;
+            
         };
 
 

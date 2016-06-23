@@ -11,7 +11,7 @@ keystone.init({
   
   'favicon': 'public/favicon.ico',
   'less': 'public',
-  'static': ['public'],
+  'static': ['public','upload'],
   
   'views': 'templates/views',
   'view cache': false,     
@@ -46,11 +46,13 @@ keystone.set('nav', {
 	'Users': 'users',
     'Events': 'events',
     'Notices': 'notices',
+    'Minutes': 'minutes',
     'Blogs': 'blogs',
     'Enquiry': 'Enquiry',
     'Real Estate':'Realestate',
     'Key Contacts':'keycontacts',
-    'Gallery':'Gallery'
+    'Gallery':'Gallery',
+    'Service Requests':'Services'
 });
 /*keystone.set('nav', {
 	'blogs': ['posts', 'post-categories', 'post-comments'],

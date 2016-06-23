@@ -1,5 +1,4 @@
 var keystone = require('keystone');
-var _ = require('lodash');
  
 exports = module.exports = function(req, res) {
     
@@ -27,7 +26,8 @@ exports = module.exports = function(req, res) {
 		
 		q.exec(function(err, results) {
 			locals.data.notices = results.results;
-            locals.data.pagination = _.omit(results, ['results']);
+            delete results.results;
+            locals.data.pagination = results;
 			next(err);
 		});
 		

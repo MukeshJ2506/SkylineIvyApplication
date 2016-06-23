@@ -14,17 +14,21 @@ Gallery.add({
 	name: { type: String, required: true },
 	publishedDate: { type: Date, default: Date.now },
 	images: {
-	type: Types.LocalFile,
-	dest: './upload/files',
-	prefix: '/files/',
-    allowedTypes: [
-        'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'
-    ],
-	filename: function(item, file){
-        console.log(item.files);
-		return item.id + '.' + file.extension
-	}
-}
+        type: Types.LocalFile,
+        dest: './upload/gallery',
+        prefix: '/gallery/',
+        allowedTypes: [
+            'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'
+        ],
+        filename: function(item, file){
+            console.log(item.files);
+            return item.id + '.' + file.extension
+        },
+        format: function(item, file){
+            return '<img src="./upload/gallery/'+file.filename+'" style="max-width: 300px"/>'
+        }
+    },
+    caption: {type:String}
 });
 
 Gallery.register();

@@ -10,24 +10,16 @@ exports.initLocals = function(req, res, next) {
     var locals = res.locals;
         
     // Add your own local variables here
-   /* locals.navLinksAdmin = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'Events',		key: 'events',		href: '/events' },
-        { label: 'Notices',		key: 'notices',		href: '/notices' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
-        { label: 'Real Estate',		key: 'realestate',		href: '/realestate' },
-		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-		{ label: 'Key Contacts',		key: 'keycontacts',		href: '/keycontacts' }
-	];
-    */
+
     locals.navLinksUser = [
 		{ label: 'Home',		key: 'home',		href: '/' },
 		{ label: 'Events',		key: 'events',		href: '/events' },
         { label: 'Notices',		key: 'notices',		href: '/notices' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
+        { label: 'MOMs',		key: 'minutes',		href: '/minutes' },
+		{ label: 'Blogs',		key: 'blog',		href: '/blog' },
         { label: 'Real Estate',		key: 'realestate',		href: '/realestate' },
 		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-        { label: 'Grievance/Service',		key: 'service',		href: '/service' },
+        { label: 'Request Service',		key: 'service',		href: '/createrequest' },
 		{ label: 'Key Contacts',		key: 'keycontacts',		href: '/keycontacts' }
 	];
 

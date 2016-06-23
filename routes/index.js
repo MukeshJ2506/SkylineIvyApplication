@@ -33,17 +33,23 @@ exports = module.exports = function(app) {
     //Site Routes
     app.get('/', routes.views.index);
     app.all('/enquiry', routes.views.enquiry);
-    app.get('/keycontacts', routes.views.keycontacts);
-    app.get('/events', routes.views.events);
-    app.get('/notices', routes.views.notices);
-    /*app.get('/blog', routes.views.blog);
-    app.get('/blog/post/:post', routes.views.post);
+    app.get('/keycontacts',middleware.requireUser, routes.views.keycontacts);
+    app.get('/events', middleware.requireUser, routes.views.events);
+    app.get('/notices', middleware.requireUser, routes.views.notices);
+    app.get('/minutes', middleware.requireUser, routes.views.minutes);
+    app.get('/blog', middleware.requireUser, routes.views.blog);
+    app.get('/blog/post/:post', middleware.requireUser, routes.views.post);
+    app.all('/blog/create',middleware.requireUser,  routes.views.createpost);
     app.get('/realestate', routes.views.realestate);
-    app.get('/gallery', routes.views.gallery);*/
+    app.all('/realestate/create',middleware.requireUser, routes.views.createrealestate);
+    app.all('/createrequest', routes.views.createrequest);
+    app.get('/gallery',middleware.requireUser, routes.views.gallery);
     //Session Routes
     app.all('/memberapplication', routes.views.session.memberapplication);
 	app.all('/signin', routes.views.session.signin);
 	app.get('/signout', routes.views.session.signout);
+  //  app.all('/forgot-password', routes.views.session['forgot-password']);
+//	app.all('/reset-password/:key', routes.views.session['reset-password']);
     
     //Auth Routes
     // Authentication
@@ -53,12 +59,9 @@ exports = module.exports = function(app) {
 
     // User
 	app.all('/me*', middleware.requireUser);
-	/*app.all('/me', routes.views.me);
-	app.all('/me/create/blog', routes.views.createpost);
-    app.get('/me/view/blog', routes.views.viewpost);
-    app.get('/me/view/realestate', routes.views.viewpost);
-    app.get('/me/view/grievance', routes.views.viewpost);
-	app.all('/me/create/realestate', routes.views.createrealestate);
-    app.all('/me/create/grievance', routes.views.creategrievance);*/
+	app.all('/me', routes.views.me);
+    /*app.get('/me/myblogs', routes.views.viewpost);
+    app.get('/me/myrealestate', routes.views.viewpost);
+    app.get('/me/myrequests', routes.views.viewpost);*/
 
 }
