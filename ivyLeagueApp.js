@@ -14,7 +14,7 @@ keystone.init({
   'static': ['public','upload'],
   
   'views': 'templates/views',
-  'view cache': false,     
+  'view cache': true,     
   'view engine': 'hbs',
   'custom engine': handlebars.create({
 		layoutsDir: 'templates/views/layouts',
@@ -54,6 +54,7 @@ keystone.set('nav', {
     'Gallery':'Gallery',
     'Service Requests':'Services'
 });
+
 /*keystone.set('nav', {
 	'blogs': ['posts', 'post-categories', 'post-comments'],
 	'galleries': 'galleries',
@@ -67,11 +68,10 @@ keystone.set('nav', {
     service: 'gmail',
     auth: {
         xoauth2: xoauth2.createXOAuth2Generator({
-            user: 'Ivyleagueownersassociation@gmail.com',
-            clientId: ' 524403321571-c6hi41bvr5pq09t79lqcmh676k8stbn7.apps.googleusercontent.com ',
-            clientSecret: ' WToiJiETsz0p9OfSiUvuXg58',
-            refreshToken:'1/IRdV0KgGYyF3L2iJxB7dnt6Ze4jGPE_Kmbaxfcb5RAs',
-            accessToken:'ya29.Ci_7AgHVVav4IQf1fk_l0vB2eET9Vv_Z8sJhI7yRoLxQ-mkKhU8TGyou-m0x0mt4yw'
+                       user: 'ivyleagueownersassociation@gmail.com',
+            clientId: '524403321571-05qqcuipsl7ltji6s01aorbjbrg81u64.apps.googleusercontent.com',
+            clientSecret: 'FL8HPWGFFoxVsNwUbRfhrZ-8',
+            refreshToken:'1/BBNbOjzCGaycMwQ7urgKiBdCmy6SsO3G6UesxMKfbUE'
             
         })
     }

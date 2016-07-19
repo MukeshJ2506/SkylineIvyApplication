@@ -39,4 +39,8 @@ Realestate.add({
     }
 });
 
+Realestate.schema.post('remove', function(doc) {
+    fs.unlinkSync(doc.images.path+'\\'+ doc.images.filename);
+});
+
 Realestate.register();

@@ -1,19 +1,32 @@
 {{!< default}}
-	<h3>Blog</h3>
+{{#ifeq section 'blog'}}
+	<h3>Blogs</h3>
 			<h4 class="text-weight-normal">Showing {{ data.posts.length}} posts.</h4>
+    {{/ifeq}}
+    {{#ifeq section 'me'}}
+	<h3>My Blogs</h3>
+			<h4 class="text-weight-normal">Showing all {{ data.posts.length}} of your posts.</h4>
+    {{/ifeq}}
             <h4 class="text-weight-normal"><a href="/blog/create" class="link">Submit a blog</a></h4>
 			<div class="blog">
 				{{# each data.posts}}
                 <div class="panel panel-primary">
                     <div class="panel-heading"> 
-                        <h3 class="panel-title"><a href="{{postUrl ../section slug}}">{{{title}}}</a></h3> 
+                        <h3 class="panel-title"><a href="{{postUrl "blog" slug}}">{{{title}}}</a></h3> 
                     </div> 
                     <div class="panel-body"> 
+                    {{#if author.name.first}}
                        <p class="lead text-muted">
-							{{#if author.name.first}}by {{author.name.first}} {{author.name.last}}{{/if}}
+							By {{author.name.first}} {{author.name.last}}
 					   </p>
-                        <p>{{{content.brief}}}</p>
-					<p class="read-more"><a href="{{postUrl ../section slug}}">Read more...</a></p>
+                    {{/if}}
+                    {{#ifeq ../section 'me'}}
+                       <p class="text-muted">
+							<strong>Status : </strong> {{state}}
+					   </p>
+                    {{/ifeq}}
+                    <p>{{{content.brief}}}</p>
+					<p class="read-more"><a href="{{postUrl "blog" slug}}">Read more...</a></p>
                     </div> 
                 </div>
 				{{/each}}

@@ -72,11 +72,10 @@ section:last-child {
 .navbar .navbar-nav > li > a {
 	color:#fff;
 }
-.nav .logo{height:49.5px;}
-header {
-	margin: 130px 0 65px;
-	text-align: center;
-}
+.navbar .logo{height:50px;}
+.navbar-right{margin-right:5px;}
+.navbar-brand{padding:0 15px;}
+#navbar{height: 1px;}
 #flash-messages.container{margin-bottom:0;}
 /*- BX Slaider reset -*/
 .bxslider {
@@ -386,3 +385,5 @@ footer .footer-bottom {
 	-moz-transition: all 0.2s ease-out;
 	-o-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out;}
+.realestate-thumb{height:100px;}
+.gallery-thumb{border-color:#000}

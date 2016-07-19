@@ -1,0 +1,27 @@
+{{!< default}}
+	<h3>My Requests.</h3>
+    <h4 class="text-weight-normal">Showing {{ data.requests.length}} requests.</h4>
+            <h4 class="text-weight-normal"><a href="/createrequest" class="link">Create a request</a></h4>
+			<div class="blog">
+				{{# each data.requests}}
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> 
+                        <h3 class="panel-title">{{{requestType}}}</h3> 
+                    </div> 
+                    <div class="panel-body"> 
+                       <p class="text-muted">
+							<strong>Status : </strong> {{state}}
+					   </p>
+                        <p class="text-muted">
+							<strong>Submitted date : </strong> {{formatDate requestDate}}
+					   </p>
+                    <p>{{{description}}}</p>
+                    {{#ifeq state 'Open'}}
+                        <p class="read-more"><a href="/deleterequest/{{_id}}" class="btn btn-danger" role="button">Close this request</a></p>
+                    {{/ifeq}}
+                    </div> 
+                </div>
+				{{/each}}
+                
+			</div>
+	{{>pagination}}

@@ -43,6 +43,8 @@ exports = module.exports = function(app) {
     app.get('/realestate', routes.views.realestate);
     app.all('/realestate/create',middleware.requireUser, routes.views.createrealestate);
     app.all('/createrequest', routes.views.createrequest);
+    app.all('/deleterequest/:request', middleware.requireUser, routes.views.deleterequest);
+    app.all('/deleterealestate/:request', middleware.requireUser, routes.views.deleterealestate);
     app.get('/gallery',middleware.requireUser, routes.views.gallery);
     //Session Routes
     app.all('/memberapplication', routes.views.session.memberapplication);
@@ -60,8 +62,9 @@ exports = module.exports = function(app) {
     // User
 	app.all('/me*', middleware.requireUser);
 	app.all('/me', routes.views.me);
-    /*app.get('/me/myblogs', routes.views.viewpost);
-    app.get('/me/myrealestate', routes.views.viewpost);
-    app.get('/me/myrequests', routes.views.viewpost);*/
+    app.get('/me/myblogs', routes.views.myblogs);
+    app.get('/me/myrealestate', routes.views.myrealestate);
+    app.get('/me/myrequests', routes.views.myrequests);
+    app.all('/me/changepassword', routes.views.session.changepassword);
 
 }

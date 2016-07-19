@@ -15,7 +15,7 @@
 			editable: true,
 			eventLimit: true,// allow "more" link when too many events
            eventRender: function(event, element, view){
-               $(element).attr({'data-toggle': "modal",'data-target': "#myModal"});
+               $(element).attr({'data-toggle': "modal",'data-target': "#myEventModal"});
                 return (event.ranges.filter(function(range){
                     return (event.start.isBefore(range.end) &&
                             event.end.isAfter(range.start));}).length)>0;
@@ -44,7 +44,7 @@
 
     </script>
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myEventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

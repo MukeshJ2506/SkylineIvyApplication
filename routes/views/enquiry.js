@@ -54,7 +54,7 @@ exports = module.exports = function(req, res) {
 		], function(err){
 			
 			if (err) return next();
-			req.flash('message', 'Thank you for registering an enquiry. Please wait for an email or a call to proceed with the same.');
+			req.flash('success', 'Thank you for registering an enquiry. Please wait for an email or a call to proceed with the same.');
             res.redirect('/');
 			
 		});

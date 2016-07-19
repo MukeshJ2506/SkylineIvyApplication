@@ -6,9 +6,9 @@
                     <h3 class="panel-title">Subject: {{name}}</h3> 
                 </div> 
                 <div class="panel-body"> 
-                    <h5><strong>Date of meeting:</strong> {{meetingDate}}</h5>
+                    <h5><strong>Date of meeting:</strong> {{formatDate meetingDate}}</h5>
                     <h5><strong>Meeting Minutes: </strong></h5>
-                    <div>{{{description}}}</div> 
+                    <div>{{{notes}}}</div> 
                 </div> 
             </div>
             {{/each}}

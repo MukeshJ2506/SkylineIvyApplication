@@ -4,7 +4,11 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>skylineivyleague</title>
+		<title>{{#if title}}{{title}}{{else}}Skyline Ivy League{{/if}}</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="Skyline, Ivy, League, Ivy League, Infopark, Smart City, Kakkanad, Skyline Ivy League, apartments Kochi, Luxury Apartments Kochi, Luxury Villas Kochi, Luxury Flats Kochi, Villas Kochi, Apartments kochi,  Kochi flat, kochi apartment, cochin apartment, apartment in kerala, apartment in kochi, kerala apartment, builder in kochi, kochi builders, builders in kochi, builders cochin, flats in kochi, apartments in kochi, apartments in kerala, kerala flats, apartments in cochin, builder in cochin, builders in cochin, flats in kerala, kerala, builders in kerala, cochin real estate, kochi real estate, real estate cochin, real estate in kochi, real estate in cochin, real estate in kerala, Apartments in Kakkanad, Apartments in Trivandrum, Apartments in Kozhikode, Apartments in Calicut, Apartments in, Luxury Apartments , Luxury Villas, Luxury Flats,Luxury"/>
+        <meta name="description" content="Skyline Ivy League, is a luxury apartment complex situated at a serene location in Edachira, Kakkanad, Kochi. The epicentre of the complex is a vast landscaped lawn dotted with luxurious amenities like swimming pool, barbecue spot and amphitheatre, movie theatre, gym, club house, game area, squash court, etc. Surrounding this exotic space will be six blocks (seven blocks in sometime) of apartments. Six acres of lush green space, out of which more than 40% is kept as open area to provide you with a green bung."/>
+        <meta name="robots" content="index, follow">
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 		<!--link href="/styles/site.min.css" rel="stylesheet"-->
         <link href="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -29,15 +33,20 @@
 
 	</head>
 	<body>
-		<div id="header">
+		<header id="header" role="header">
 			<div class="container">
-				<div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
-					<div class="container-fluid">
-						<div class="collapse navbar-collapse">
+				<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#"><img src="/images/sitelogo.jpg" class="logo"/></a>
+                    </div>
+					<div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
 							<ul class="nav navbar-nav navbar-left" >
-                                    <li>
-                                        <img src="/images/ivylguelogo.jpg" class="logo"/>
-                                    </li>
                                     {{#if user.isVerified}}
                                             {{# each navLinksUser}}
                                                 <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
@@ -58,10 +67,10 @@
                                      <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> {{user.name.first}} {{user.name.last}}  <span class="caret"></span>
                                         <ul class="dropdown-menu">
                                             <li><a href="/me">My Profile</a></li> 
-                                            <li><a href="/me/view/blog">My Blogs</a></li>
-                                            <li><a href="/me/view/grievance">My Requests</a></li>
-                                            <li><a href="/me/view/realestate">My Real Estate</a></li>
-                                            <li><a href="/changepassword">Change Password</a></li>
+                                            <li><a href="/me/myblogs">My Blogs</a></li>
+                                            <li><a href="/me/myrequests">My Requests</a></li>
+                                            <li><a href="/me/myrealestate">My Real Estate</a></li>
+                                            <li><a href="/me/changepassword">Change Password</a></li>
                                            <li><a href="/signout">Sign Out</a></li>
                                         </ul>
                                      </a></li>								
@@ -71,11 +80,10 @@
 								{{/if}}
                             </ul>
 						</div>
-					</div>
-				</div>
+				</nav>
 			</div>
-		</div>
-		<div id="body">
+		</header>
+		<div id="body" role="content">
             <div class="container">
 			<!--
 				Flash messages allow you to display once-off status messages to users, e.g. form

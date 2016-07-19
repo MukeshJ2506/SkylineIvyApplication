@@ -14,7 +14,8 @@ User.add({
     password: { type: Types.Password, initial: true, noedit:true },
     userRole: { type: Types.Select, options:'Admin, Guest, User', required: true, initial: true },
     apartmentNo: {type: String, required: true, initial: true},
-    towerName: {type: Types.Select, options:'Columbia, Cornell, Harvard, Princeton, Sylvania, Yale', required: true, initial: true}
+    towerName: {type: Types.Select, options:'Columbia, Cornell, Harvard, Princeton, Sylvania, Yale', required: true, initial: true},
+    resetPasswordKey: { type: String, hidden: true }
 }, 'Profile', {
 	mobileNo: { type: Number},
 	isAssociation: {type:Boolean},

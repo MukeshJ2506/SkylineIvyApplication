@@ -1,6 +1,10 @@
 {{!< default}}
 			<article class="blog-post">
-				<p><a href="/blog">&larr; back to the blog</a></p>
+                {{#ifeq prevLink 'myblogs'}}
+                    <p><a href="/me/myblogs">&larr; back to my blogs</a></p>
+                {{else}}
+                    <p><a href="/blog">&larr; back to blogs</a></p>
+                {{/ifeq}}
 				<hr>
                 <div class="blog-post-body">
 					<h2>{{data.post.title}}</h2>

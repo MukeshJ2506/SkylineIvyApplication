@@ -1,6 +1,4 @@
-var keystone = require('keystone'),
-	_ = require('lodash'),
-	moment = require('moment');
+var keystone = require('keystone');
 
 exports = module.exports = function(req, res) {
 	
@@ -9,21 +7,6 @@ exports = module.exports = function(req, res) {
 	
 	locals.section = 'me';
     locals.profile = {};
-	/*locals.page.title = 'Settings - SydJS';
-	
-	view.query('nextMeetup',
-		Meetup.model.findOne()
-			.where('state', 'active')
-			.sort('startDate')
-	, 'talks[who]');
-	
-	view.query('rsvps.history',
-		RSVP.model.find()
-			.where('who', req.user)
-			.where('attending', true)
-			.populate('meetup')
-			.sort('-createdAt')
-	);*/
 	
 	view.on('post', { action: 'Update Profile' }, function(next) {
 	
@@ -33,11 +16,11 @@ exports = module.exports = function(req, res) {
 		}, function(err) {
 		
 			if (err) {
+                req.flash('error', 'Oops! Something went wrong.');
 				return next();
 			}
 			
 			req.flash('success', 'Your changes have been saved.');
-			//return next();
             res.redirect("/me");
 		
 		});

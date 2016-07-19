@@ -6,7 +6,7 @@ var _ = require('underscore'),
     Include anything that should be initialised before route controllers are executed.
 */
 exports.initLocals = function(req, res, next) {
-    
+        
     var locals = res.locals;
         
     // Add your own local variables here
@@ -30,6 +30,12 @@ exports.initLocals = function(req, res, next) {
 	];
     
 	locals.user = req.user;
+    if(req.headers.referer){
+        locals.prevLink = req.headers.referer.substring(req.headers.referer.lastIndexOf("/")+1);
+    }else{
+         locals.prevLink = "";
+         
+    }
     
     next();
     

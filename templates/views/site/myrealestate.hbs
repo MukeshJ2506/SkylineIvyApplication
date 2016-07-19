@@ -1,0 +1,43 @@
+{{!< default}}
+	<h3>My Adverts.</h3>
+    <h4 class="text-weight-normal">Showing {{ data.requests.length}} of your adverts.</h4>
+            <h4 class="text-weight-normal"><a href="/realestate/create" class="link">Post an Advert</a></h4>
+			<div class="blog">
+				{{# each data.requests}}
+                <div class="panel panel-primary">
+                    <div class="panel-heading"> 
+                        <h3 class="panel-title">{{{heading}}}</h3> 
+                    </div> 
+                    <div class="panel-body"> 
+                        <p class="text-muted">
+							<strong>Advert Type : </strong> {{adType}}
+					   </p>
+                       <p class="text-muted">
+							<strong>Status : </strong> {{status}}
+					   </p>
+                        <p class="text-muted">
+							<strong>Submitted date : </strong> {{formatDate createdDate}}
+					   </p>
+                        {{approvedFlag}}
+                        {{#if approvedFlag}}
+                            <p class="text-muted">
+							<strong>Approval status : </strong> True
+                            </p>
+                        {{else}}
+                            <p class="text-muted">
+							<strong>Approval status : </strong> False
+                            </p>
+                        {{/if}}
+                    <p>{{{description}}}</p>
+                     <p>
+                        <img src="{{imageURLformatter images.path images.filename}}"  alt="Image" class="img-rounded img-thumbnail realestate-thumb"/>
+                    </p>
+                    {{#ifeq status 'Open'}}
+                        <p class="read-more"><a href="/deleterealestate/{{_id}}" class="btn btn-danger" role="button">Archive this advert</a></p>
+                    {{/ifeq}}
+                    </div> 
+                </div>
+				{{/each}}
+                
+			</div>
+	{{>pagination}}

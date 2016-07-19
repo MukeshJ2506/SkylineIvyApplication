@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
                 page: req.query.page || 1,
                 perPage: 10,
                 maxPages: 10
-            }).where('status','Open').sort('-createdDate').populate('advertisor');
+            }).where('status','Open').where('approvedFlag',true).sort('-createdDate').populate('advertisor');
        
 		
 		q.exec(function(err, results) {

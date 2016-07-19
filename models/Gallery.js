@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var fs = require('fs');
 
 /**
  * Gallery Model
@@ -32,3 +33,7 @@ Gallery.add({
 });
 
 Gallery.register();
+
+Gallery.schema.post('remove', function(doc) {
+    fs.unlinkSync(doc.images.path+'\\'+ doc.images.filename);
+});

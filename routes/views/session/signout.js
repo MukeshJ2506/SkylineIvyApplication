@@ -8,6 +8,7 @@ exports = module.exports = function(req, res) {
 	locals.section = 'session';
 	
 	keystone.session.signout(req, res, function() {
+        req.flash('success', 'You have signed out successfully. Please sign-in again, from sign-in page.');
 		res.redirect('/');
 	});
 	

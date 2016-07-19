@@ -1,0 +1,32 @@
+<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">An enquiry was just submitted, with the follwing details:</p>
+{{#if email}}
+	<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">From:
+	{{#if name.first}}
+		<strong>{{name.first}} {{name.last}}</strong>
+	{{/if}}
+	
+	{{#if email}}
+		(<a style="text-decoration:underline;color:#b31b1b" href="mailto:{{email}}">{{email}}</a>)			
+	{{/if}}
+	</p>
+	
+	{{#if phone}}
+<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">Phone: <a style="text-decoration:underline;color:#b31b1b" href="tel:{{phone}}">{{phone}}</a></p>
+	{{/if}}
+	
+	{{#if enquirytype}}
+		<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">Enquiry Type: {{enquiryType}}</p>
+	{{/if}}
+	
+	{{#if message}}
+    <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">
+        <strong>Message :</strong><br/>
+		{{{message}}}
+    </p>
+	{{/if}}
+	
+    <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">Sent: <strong>{{formatDate createdAt}}</strong></p>
+    <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">
+        <a style="text-decoration:underline;color:#b31b1b" href="{{domain}}/keystone/enquiries/{{id}}" target="_blank" label="Open Enquiry" >Open enquiry details in the site</a>
+    </p>
+{{/if}}

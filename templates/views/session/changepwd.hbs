@@ -1,0 +1,11 @@
+{{!< default}}
+		<h3>Please change your password.</h3>
+        <form method="post" action="/me/changepassword">
+		<div class="form-group">
+           <input type="password" required class="form-control" placeholder="Please enter your old Password" name="oldpwd"/>
+        </div>
+        <div class="form-group"><input type="password" required class="form-control" placeholder="Please enter your new Password" name="password"/></div>
+        <div class="form-group"><input type="password" required class="form-control" placeholder="Please re-enter your new Password" name="confirmpwd"/></div>
+        <input type="hidden" name='action' value='changepwd'/>
+        <div class="form-actions"><button type="submit" class="btn btn-block btn-primary btn-submit">Change Password</button></div>
+        </form>

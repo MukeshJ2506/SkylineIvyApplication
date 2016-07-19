@@ -17,7 +17,7 @@ Services.add({
     requestType: { type: Types.Select, options: 'Service, Grievance, Suggestion', noedit: true },
 	requestDate: { type: Types.Date, index: true, default:Date.now, noedit:true },
 	description: { type: Types.Html, wysiwyg: true, required:true, initial:true, noedit:true },
-    state: { type: Types.Select, options: 'Open, In Progress, Resolved', default: 'Open', index: true }
+    state: { type: Types.Select, options: 'Open, In Progress, Resolved, Closed', default: 'Open', index: true }
 });
 
 
