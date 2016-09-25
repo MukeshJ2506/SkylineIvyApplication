@@ -18,7 +18,6 @@
                         <p class="text-muted">
 							<strong>Submitted date : </strong> {{formatDate createdDate}}
 					   </p>
-                        {{approvedFlag}}
                         {{#if approvedFlag}}
                             <p class="text-muted">
 							<strong>Approval status : </strong> True
@@ -33,7 +32,7 @@
                         <img src="{{imageURLformatter images.path images.filename}}"  alt="Image" class="img-rounded img-thumbnail realestate-thumb"/>
                     </p>
                     {{#ifeq status 'Open'}}
-                        <p class="read-more"><a href="/deleterealestate/{{_id}}" class="btn btn-danger" role="button">Archive this advert</a></p>
+                        <p class="read-more"><a href="/deleterealestate/{{_id}}" class="btn btn-danger btn-raised" role="button">Archive this advert</a></p>
                     {{/ifeq}}
                     </div> 
                 </div>

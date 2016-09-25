@@ -2,9 +2,9 @@ var keystone = require('keystone'),
 	User = keystone.list('User');
 
 exports = module.exports = function(req, res) {
-	
 	var view = new keystone.View(req, res),
 		locals = res.locals;
+        locals.key = req.params.key;
 	
 	view.on('init', function(next) {
 		
@@ -12,7 +12,7 @@ exports = module.exports = function(req, res) {
 			if (err) return next(err);
 			if (!user) {
 				req.flash('error', "Sorry, that reset password key isn't valid.");
-				return res.redirect('/forgot-password');
+				return res.redirect('/forgotpassword');
 			}
 			locals.found = user;
 			next();
@@ -21,7 +21,7 @@ exports = module.exports = function(req, res) {
 	});
 	
 	view.on('post', { action: 'reset-password' }, function(next) {
-		
+
 		if (!req.body.password || !req.body.password_confirm) {
 			req.flash('error', "Please enter, and confirm your new password.");
 			return next();

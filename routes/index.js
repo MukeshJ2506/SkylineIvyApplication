@@ -50,8 +50,8 @@ exports = module.exports = function(app) {
     app.all('/memberapplication', routes.views.session.memberapplication);
 	app.all('/signin', routes.views.session.signin);
 	app.get('/signout', routes.views.session.signout);
-  //  app.all('/forgot-password', routes.views.session['forgot-password']);
-//	app.all('/reset-password/:key', routes.views.session['reset-password']);
+    app.all('/forgotpassword', routes.views.session['forgotpassword']);
+    app.all('/resetpassword/:key', routes.views.session['resetpassword']);
     
     //Auth Routes
     // Authentication

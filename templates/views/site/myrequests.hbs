@@ -15,9 +15,9 @@
                         <p class="text-muted">
 							<strong>Submitted date : </strong> {{formatDate requestDate}}
 					   </p>
-                    <p>{{{description}}}</p>
+                    <p><strong>Description : </strong><br/>{{{description}}}</p>
                     {{#ifeq state 'Open'}}
-                        <p class="read-more"><a href="/deleterequest/{{_id}}" class="btn btn-danger" role="button">Close this request</a></p>
+                        <p class="read-more"><a href="/deleterequest/{{_id}}" class="btn btn-danger btn-raised" role="button">Close this request</a></p>
                     {{/ifeq}}
                     </div> 
                 </div>

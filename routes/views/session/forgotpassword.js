@@ -20,6 +20,7 @@ exports = module.exports = function(req, res) {
 				return next();
 			}
 			user.resetPassword(function(err) {
+                console.log('check')
 				// if (err) return next(err);
 				if (err) {
 					console.error('===== ERROR sending reset password email =====');
@@ -28,7 +29,7 @@ exports = module.exports = function(req, res) {
 					next();
 				} else {
 					req.flash('success', 'We have emailed you a link to reset your password');
-					res.redirect('/signin');
+					res.redirect('/');
 				}
 			});
 		});

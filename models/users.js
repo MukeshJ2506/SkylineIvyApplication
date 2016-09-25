@@ -2,6 +2,7 @@ var keystone = require('keystone'),
     async = require('async'),
     crypto = require('crypto'),
     Types = keystone.Field.Types;
+var transporter = require('../helpers/emailBot');
  
 var User = new keystone.List('User', {
 	track: true,
@@ -38,5 +39,52 @@ User.relationship({ ref: 'Services', path: 'services', refPath: 'requestor' });
 User.schema.virtual('canAccessKeystone').get(function() {
 	return this.isAdmin;
 });
+
+/**
+ * Methods
+ * =======
+*/
+
+User.schema.pre('save', function(next) {
+    console.log(this.isModified('isVerified'))
+	 if (this.isModified('isVerified') && this.isVerified ) {
+        console.log('test')
+    }
+    next();
+});
+
+User.schema.methods.resetPassword = function(callback) {
+    if ('function' !== typeof callback) {
+		callback = function() {};
+	}
+	var user = this;
+	user.resetPasswordKey = keystone.utils.randomString([16,24]);
+	user.save(function(err) {
+		if (err) return callback(err);
+		    var reset={
+            domain : 'http://localhost:3000',
+            link :  '/resetpassword/' + user.resetPasswordKey,
+            user : user.name
+        }
+        var mailOptions = {
+            from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 
+            to: user.email, // list of receivers 
+            subject: 'Reset your IvyLeague Password', // Subject line 
+            template: 'password-reset',
+            context: reset
+        };
+ 
+        // send mail with defined transport object 
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                return callback(error);
+            }
+            console.log('Message sent: ' + info.response);
+            return callback();;
+        });
+	});
+}
+
 
 User.register();

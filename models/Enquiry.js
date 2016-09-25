@@ -51,7 +51,7 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
         admins.forEach(function(item,index){
             emailStr += item.email+",";
         })
-        var mailBody = '<strong>Hi,</strong><h4 class="text-larger">An enquiry was just submitted to:</h4><p class="text-larger">From: <strong>'+enquiry.name.first+' '+enquiry.name.last+'</strong><br/>(<a href="mailto:'+enquiry.email+'">'+enquiry.email+'</a>)</p><h4 class="text-larger">Phone: '+enquiry.phone+'</h4><h3 class="text-larger">'+enquiry.enquiryType+'</h3><h3>'+enquiry.message+'</h3><p class="text-muted">Sent: '+enquiry.createdAt+'</p>';
+       // var mailBody = '<strong>Hi,</strong><h4 class="text-larger">An enquiry was just submitted to:</h4><p class="text-larger">From: <strong>'+enquiry.name.first+' '+enquiry.name.last+'</strong><br/>(<a href="mailto:'+enquiry.email+'">'+enquiry.email+'</a>)</p><h4 class="text-larger">Phone: '+enquiry.phone+'</h4><h3 class="text-larger">'+enquiry.enquiryType+'</h3><h3>'+enquiry.message+'</h3><p class="text-muted">Sent: '+enquiry.createdAt+'</p>';
         enquiry.domain = 'http://localhost:3000';
 		
 		var mailOptions = {
@@ -60,7 +60,6 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
             subject: 'Notification for an enquiry', // Subject line 
             template: 'enquiry-notification',
             context: enquiry
-            // html: mailBody
         };
  
         // send mail with defined transport object 
@@ -70,15 +69,6 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
             }
             console.log('Message sent: ' + info.response);
         });
-     /*  new keystone.Email('enquiry-notification').send({
-			to: emailStr,
-			from: {
-				name: 'skyline ivyleague👥',
-				email: 'ivyleagueownersassociation@gmail.com'
-			},
-			subject: 'New Enquiry for Skyline Ivy League',
-			enquiry: enquiry
-		}, callback);*/
 	});
 };
 
