@@ -91,3 +91,12 @@ exports.requireUser = function(req, res, next) {
 		next();
 	}
 }
+
+exports.requireOwner = function(req, res, next) {
+	if (!req.user || req.user.stayType == "Rental") {
+		req.flash('error', 'Please request necessary privileges to access this page.');
+		res.redirect('/signin');
+	} else {
+		next();
+	}
+}

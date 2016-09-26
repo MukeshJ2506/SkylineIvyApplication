@@ -1,6 +1,8 @@
 var keystone = require('keystone');
 var moment = require('moment');
 var Types = keystone.Field.Types;
+var transporter = require('../helpers/emailBot');
+
 
 /**
  * Notices Model
@@ -25,6 +27,34 @@ Notices.add({
 
 Notices.schema.pre('save', function(next) {
 	var notice= this;
+    notice.domain = keystone.get('domain');
+    if(notice.isNew){
+        keystone.list('User').model.find({}, {email:1,name:1,_id:0}).exec(function(err, users) {
+		
+            if (err) return callback(err);
+             var emailStr = "";
+            users.forEach(function(item,index){
+                emailStr += item.email+",";
+            })
+             var mailOptions = {
+                from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 
+                bcc: emailStr, // list of receivers 
+                subject: 'Notice from SILOA for your attention', // Subject line 
+                template: 'notice-notification',
+                context: notice
+            };
+
+            // send mail with defined transport object 
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    console.log(error);
+                    return error;
+                }
+                console.log('Message sent: ' + info.response);
+                return true;
+            });
+        });
+    }
 	
 	if (moment().isAfter(moment(notice.endDate))) {
 		notice.state = 'Past';

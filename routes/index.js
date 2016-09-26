@@ -36,7 +36,7 @@ exports = module.exports = function(app) {
     app.get('/keycontacts',middleware.requireUser, routes.views.keycontacts);
     app.get('/events', middleware.requireUser, routes.views.events);
     app.get('/notices', middleware.requireUser, routes.views.notices);
-    app.get('/minutes', middleware.requireUser, routes.views.minutes);
+    app.get('/minutes', middleware.requireOwner, routes.views.minutes);
     app.get('/blog', middleware.requireUser, routes.views.blog);
     app.get('/blog/post/:post', middleware.requireUser, routes.views.post);
     app.all('/blog/create',middleware.requireUser,  routes.views.createpost);

@@ -41,6 +41,7 @@ keystone.init({
 require('./models');
  
 keystone.set('routes', require('./routes'));
+keystone.set('domain', process.env.APP_URI || 'http://localhost:3000');
 
 keystone.set('nav', {
 	'Users': 'users',

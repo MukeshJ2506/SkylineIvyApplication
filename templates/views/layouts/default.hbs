@@ -55,9 +55,18 @@
 							<ul class="nav navbar-nav" >
                                     {{#if user.isVerified}}
                                             {{# each navLinksUser}}
+                                                {{#ifeq ../user.stayType 'Owner'}}
                                                 <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
                                                     <a href="{{ href }}">{{ label }}</a>
                                                 </li>
+                                                {{else}}
+                                                    {{#ifeq key 'minutes'}}
+                                                    {{else}}
+                                                        <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                            <a href="{{ href }}">{{ label }}</a>
+                                                        </li>
+                                                    {{/ifeq}}
+                                                {{/ifeq}}
                                             {{/each}}
                                     {{else}}
                                         {{# each navLinksGuest}}

@@ -44,6 +44,20 @@ exports = module.exports = function(req, res) {
 				});
 				
 			},
+            function(cb) {
+				
+				keystone.list('User').model.findOne({ towerName: req.body.towerName, apartmentNo: req.body.apartmentNo, stayType: req.body.stayType }, function(err, user) {
+					
+					if (err || user) {
+						req.flash('error', 'User already exists with the same apartment and stay type. If you are awaiting for acceptance from admin, please wait for the same.');
+						return cb(true);
+					}
+					
+					return cb();
+					
+				});
+				
+			},
 			
 			function(cb) {
 			

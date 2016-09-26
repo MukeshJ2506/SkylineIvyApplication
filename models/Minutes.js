@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var transporter = require('../helpers/emailBot');
 
 /**
  * Minutes Model
@@ -17,6 +18,42 @@ Minutes.add({
 	notes: { type: Types.Html, wysiwyg: true, required:true, initial:true }
 });
 
+// Pre Save
+// ------------------------------
+
+Minutes.schema.pre('save', function(next) {
+	var minutes= this;
+    minutes.domain = keystone.get('domain');
+    if(minutes.isNew){
+        keystone.list('User').model.find({}, {email:1,name:1,_id:0}).where('stayType', 'Owner').exec(function(err, users) {
+		
+            if (err) return callback(err);
+             var emailStr = "";
+            users.forEach(function(item,index){
+                emailStr += item.email+",";
+            })
+             var mailOptions = {
+                from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 
+                bcc: emailStr, // list of receivers 
+                subject: 'Minutes of meeting from SILOA for your attention', // Subject line 
+                template: 'minutes-notification',
+                context: minutes
+            };
+
+            // send mail with defined transport object 
+            transporter.sendMail(mailOptions, function(error, info){
+                if(error){
+                    console.log(error);
+                    return error;
+                }
+                console.log('Message sent: ' + info.response);
+                return true;
+            });
+        });
+    }
+	
+	next();
+});
 /**
  * Registration
  * ============

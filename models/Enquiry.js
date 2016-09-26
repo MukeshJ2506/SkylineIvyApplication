@@ -52,7 +52,7 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
             emailStr += item.email+",";
         })
        // var mailBody = '<strong>Hi,</strong><h4 class="text-larger">An enquiry was just submitted to:</h4><p class="text-larger">From: <strong>'+enquiry.name.first+' '+enquiry.name.last+'</strong><br/>(<a href="mailto:'+enquiry.email+'">'+enquiry.email+'</a>)</p><h4 class="text-larger">Phone: '+enquiry.phone+'</h4><h3 class="text-larger">'+enquiry.enquiryType+'</h3><h3>'+enquiry.message+'</h3><p class="text-muted">Sent: '+enquiry.createdAt+'</p>';
-        enquiry.domain = 'http://localhost:3000';
+        enquiry.domain = keystone.get('domain');
 		
 		var mailOptions = {
             from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 

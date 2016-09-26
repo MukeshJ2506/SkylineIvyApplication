@@ -46,9 +46,29 @@ User.schema.virtual('canAccessKeystone').get(function() {
 */
 
 User.schema.pre('save', function(next) {
-    console.log(this.isModified('isVerified'))
+    var user = this;
+    var message = {
+        domain:  keystone.get('domain'),
+        name: user.name
+    }
 	 if (this.isModified('isVerified') && this.isVerified ) {
-        console.log('test')
+         var mailOptions = {
+            from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 
+            to: user.email, // list of receivers 
+            subject: 'Membership request accepted', // Subject line 
+            template: 'membership-notification',
+            context: message
+        };
+ 
+        // send mail with defined transport object 
+        transporter.sendMail(mailOptions, function(error, info){
+            if(error){
+                console.log(error);
+                return error;
+            }
+            console.log('Message sent: ' + info.response);
+            return true;
+        });
     }
     next();
 });
@@ -61,7 +81,7 @@ User.schema.methods.resetPassword = function(callback) {
 	user.resetPasswordKey = keystone.utils.randomString([16,24]);
 	user.save(function(err) {
 		if (err) return callback(err);
-		    var reset={
+        var reset={
             domain : 'http://localhost:3000',
             link :  '/resetpassword/' + user.resetPasswordKey,
             user : user.name
@@ -81,7 +101,7 @@ User.schema.methods.resetPassword = function(callback) {
                 return callback(error);
             }
             console.log('Message sent: ' + info.response);
-            return callback();;
+            return callback();
         });
 	});
 }

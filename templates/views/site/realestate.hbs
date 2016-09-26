@@ -1,7 +1,7 @@
 {{!< default}}
 	<h3>Real Estate Adverts</h3>
 			{{#ifeq data.realestate.length 0}}<h5 class="text-weight-normal">There are no Real Estate adverts at this time.</h5>{{/ifeq}}
-             {{#if user.isVerified}}<h4 class="text-weight-normal"><a href="/realestate/create">Post an Advert</a></h4>{{/if}}
+             {{#if user.isVerified}}{{#ifeq user.stayType 'Owner'}}<h4 class="text-weight-normal"><a href="/realestate/create">Post an Advert</a></h4>{{/ifeq}}{{/if}}
 			<div class="blog">
 				{{# each data.realestate}}
                 <div class="panel panel-primary">

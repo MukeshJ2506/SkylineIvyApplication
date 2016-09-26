@@ -17,7 +17,7 @@
 					   </p>
                     <p><strong>Description : </strong><br/>{{{description}}}</p>
                     {{#ifeq state 'Open'}}
-                        <p class="read-more"><a href="/deleterequest/{{_id}}" class="btn btn-danger btn-raised" role="button">Close this request</a></p>
+                        <p class="read-more"><a href="/deleterequest/{{_id}}" class="btn btn-danger btn-raised deletebutton" role="button">Close this request</a></p>
                     {{/ifeq}}
                     </div> 
                 </div>
@@ -25,3 +25,34 @@
                 
 			</div>
 	{{>pagination}}
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h3 class="modal-title" id="myModalLabel">Confirmation Alert!!</h3>
+      </div>
+      <div class="modal-body" id="myModalBody">
+          Are you sure about closing this advert?
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default btn-raised"  data-dismiss="modal">Cancel</button><button class="btn btn-primary btn-raised"><a href="#" id="okBtn">OK</a></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.deletebutton').on('click',function(ev){
+             $('#confirmModal').modal({
+                show: 'true'
+            }); 
+            $('#okBtn').attr('href',$(this).attr('href'));
+            ev.preventDefault();
+        });
+        
+    });    
+</script>
