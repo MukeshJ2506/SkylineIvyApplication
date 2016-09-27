@@ -1,6 +1,6 @@
 var _ = require('underscore'),
     keystone = require('keystone');
- 
+var log  = require('../helpers/logger');
 /**
     Initialises the standard view locals.
     Include anything that should be initialised before route controllers are executed.
@@ -47,6 +47,7 @@ exports.initLocals = function(req, res, next) {
 exports.initErrorHandlers = function(req, res, next) {
     
     res.err = function(err, title, message) {
+        log.error('500 error: '+err);
         res.status(500).render('errors/500', {
             err: err,
             errorTitle: title,
@@ -55,6 +56,7 @@ exports.initErrorHandlers = function(req, res, next) {
     }
     
     res.notfound = function(title, message) {
+        log.error('404 error: '+ message);
         res.status(404).render('errors/404', {
             errorTitle: title,
             errorMsg: message

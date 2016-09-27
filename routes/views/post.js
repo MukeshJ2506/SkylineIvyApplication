@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -24,6 +25,7 @@ exports = module.exports = function(req, res) {
 		
 		q.exec(function(err, result) {
 			locals.data.post = result;
+            if(err){log.error(err);}
 			next(err);
 		});
 		

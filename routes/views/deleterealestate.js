@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -19,6 +20,7 @@ exports = module.exports = function(req, res) {
 		});
 		
 		q.exec(function(err, result) {
+            if(err){log.error('Error while deleting an advert'+err);}
 			result.status = "Closed";
             result.save();
             req.flash('success', 'You have successfully closed the advert.');

@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
+var log  = require('../../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 
@@ -23,29 +24,16 @@ exports = module.exports = function(req, res) {
 		}
         req.user._.password.compare(req.body.oldpwd, function(err, isMatch) {
                     if (!err && isMatch) {
-                        /*req.user.getUpdateHandler(req).process(req.body, {
-                            fields: 'password',
-                            flashErrors: true
-                        }, function(err) {
-
-                            if (err) {
-                                console.log(err)
-                                req.flash('error', 'Oops! Something went wrong.');
-                                return next();
-                            }
-
-                            req.flash('success', 'Your password has been changed.');
-                            res.redirect("/me");
-
-                        });*/
                         keystone.list('User').model.findOne({ email: req.user.email}, function(findError, user) {
                           if (findError) {
                             // handle error
+                            log.error(findError);
                             req.flash('error', 'Oops! Something went wrong.');
                           } else {
                             user.password = req.body.password;
                             user.save(function(saveError) {
                               if (saveError) {
+                                log.error(saveError);
                                 req.flash('error', 'Oops! Something went wrong.');
                               }
                             req.flash('success', 'Your password has been changed.');

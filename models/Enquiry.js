@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var transporter = require('../helpers/emailBot');
+var log  = require('../helpers/logger');
 
 /**
  * Enquiry Model
@@ -45,13 +46,13 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
 	
 	keystone.list('User').model.find({}, {email:1,name:1,_id:0}).where('isAdmin', true).exec(function(err, admins) {
 		
-		if (err) return callback(err);
+		if (err){log.error("Error inside Enquiry while accessing User: "+err); return callback(err);}
         
         var emailStr = "";
         admins.forEach(function(item,index){
             emailStr += item.email+",";
         })
-       // var mailBody = '<strong>Hi,</strong><h4 class="text-larger">An enquiry was just submitted to:</h4><p class="text-larger">From: <strong>'+enquiry.name.first+' '+enquiry.name.last+'</strong><br/>(<a href="mailto:'+enquiry.email+'">'+enquiry.email+'</a>)</p><h4 class="text-larger">Phone: '+enquiry.phone+'</h4><h3 class="text-larger">'+enquiry.enquiryType+'</h3><h3>'+enquiry.message+'</h3><p class="text-muted">Sent: '+enquiry.createdAt+'</p>';
+     
         enquiry.domain = keystone.get('domain');
 		
 		var mailOptions = {
@@ -65,9 +66,10 @@ Enquiry.schema.methods.sendNotificationEmail = function(callback) {
         // send mail with defined transport object 
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
-                return console.log(error);
+                log.error("From Enquiry: "+error);
+                return error;
             }
-            console.log('Message sent: ' + info.response);
+            log.info('Message sent from Enquiry: ' + info.response);
         });
 	});
 };

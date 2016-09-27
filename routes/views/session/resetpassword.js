@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	User = keystone.list('User');
+var log  = require('../../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res),
@@ -9,7 +10,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		
 		User.model.findOne().where('resetPasswordKey', req.params.key).exec(function(err, user) {
-			if (err) return next(err);
+			if (err){log.error(err); return next(err);}
 			if (!user) {
 				req.flash('error', "Sorry, that reset password key isn't valid.");
 				return res.redirect('/forgotpassword');
@@ -35,7 +36,7 @@ exports = module.exports = function(req, res) {
 		locals.found.password = req.body.password;
 		locals.found.resetPasswordKey = '';
 		locals.found.save(function(err) {
-			if (err) return next(err);
+			if (err){log.error(err); return next(err);}
 			req.flash('success', 'Your password has been reset, please sign in.');
 			res.redirect('/signin');
 		});

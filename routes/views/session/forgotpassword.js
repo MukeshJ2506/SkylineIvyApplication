@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	User = keystone.list('User');
+var log  = require('../../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -14,17 +15,15 @@ exports = module.exports = function(req, res) {
 		}
 
 		User.model.findOne().where('email', req.body.email).exec(function(err, user) {
-			if (err) return next(err);
+			if (err) {log.error(err);return next(err);}
 			if (!user) {
 				req.flash('error', "Sorry, we don't recognise that email address.");
 				return next();
 			}
 			user.resetPassword(function(err) {
-                console.log('check')
-				// if (err) return next(err);
 				if (err) {
-					console.error('===== ERROR sending reset password email =====');
-					console.error(err);
+					log.error('===== ERROR sending reset password email =====');
+					log.error(err);
 					req.flash('error', 'Error sending reset password email.');
 					next();
 				} else {

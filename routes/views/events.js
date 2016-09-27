@@ -1,5 +1,5 @@
 var keystone = require('keystone');
-var moment = require('moment')
+var moment = require('moment');
  
 exports = module.exports = function(req, res) {
     

@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "async": "^2.0.0-rc.5",
+    "bunyan": "^1.8.1",
     "connect-mongo": "^1.2.0",
     "crypto": "0.0.3",
     "express-handlebars": "^3.0.0",
+    "file-stream-rotator": "0.0.7",
     "handlebars": "^4.0.5",
     "keystone": "latest",
     "moment": "^2.13.0",

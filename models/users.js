@@ -3,6 +3,7 @@ var keystone = require('keystone'),
     crypto = require('crypto'),
     Types = keystone.Field.Types;
 var transporter = require('../helpers/emailBot');
+var log  = require('../helpers/logger');
  
 var User = new keystone.List('User', {
 	track: true,
@@ -63,10 +64,10 @@ User.schema.pre('save', function(next) {
         // send mail with defined transport object 
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
-                console.log(error);
+                log.error("From Membership notification: "+error);
                 return error;
             }
-            console.log('Message sent: ' + info.response);
+            log.info('Message sent from membership notification: ' + info.response);
             return true;
         });
     }
@@ -80,9 +81,9 @@ User.schema.methods.resetPassword = function(callback) {
 	var user = this;
 	user.resetPasswordKey = keystone.utils.randomString([16,24]);
 	user.save(function(err) {
-		if (err) return callback(err);
+		if (err){log.error("Error while saving a user in resetpwd: "+err); return callback(err);}
         var reset={
-            domain : 'http://localhost:3000',
+            domain : keystone.get('domain'),
             link :  '/resetpassword/' + user.resetPasswordKey,
             user : user.name
         }
@@ -97,10 +98,10 @@ User.schema.methods.resetPassword = function(callback) {
         // send mail with defined transport object 
         transporter.sendMail(mailOptions, function(error, info){
             if(error){
-                console.log(error);
+                 log.error("From password reset: "+error);
                 return callback(error);
             }
-            console.log('Message sent: ' + info.response);
+            log.info('Message sent from password reset: ' + info.response);
             return callback();
         });
 	});

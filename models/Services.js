@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var transporter = require('../helpers/emailBot');
+var log  = require('../helpers/logger');
 
 /**
  * Services Model
@@ -31,7 +32,7 @@ Services.schema.pre('save', function(next) {
     service.domain = keystone.get('domain');
     if(service.isNew){
            keystone.list('User').model.findOne().where('_id', service.requestor).exec(function(err, user) {
-            if(err){return false;}
+            if(err){log.error("Error inside Services while accessing User: "+err);return false;}
             service.name = user.name
              var mailOptions = {
                 from: '"skyline ivyleague👥" <ivyleagueownersassociation@gmail.com>', // sender address 
@@ -44,10 +45,10 @@ Services.schema.pre('save', function(next) {
             // send mail with defined transport object 
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){
-                    console.log(error);
+                    log.error("From Services: "+error);
                     return error;
                 }
-                console.log('Message sent: ' + info.response);
+                log.info('Message sent from Services: ' + info.response);
                 return true;
             });
     });

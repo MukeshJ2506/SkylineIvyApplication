@@ -1,4 +1,5 @@
 var keystone = require('keystone');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -16,6 +17,7 @@ exports = module.exports = function(req, res) {
 		}, function(err) {
 		
 			if (err) {
+                log.error('Error while updating my profile: ' + err);
                 req.flash('error', 'Oops! Something went wrong.');
 				return next();
 			}

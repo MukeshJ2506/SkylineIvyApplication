@@ -2,6 +2,7 @@ var keystone = require('keystone'),
 	async = require('async'),
     path = require('path'),
     fs = require('fs');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	if (!req.user) {
@@ -39,7 +40,7 @@ exports = module.exports = function(req, res) {
 
                     if(post == null){
                         newPost.save(function(err) {
-                            console.log(err)
+                            log.error('Error while saving a request' + err)
                             return cb(err);
                         });
                     }else{
@@ -53,7 +54,7 @@ exports = module.exports = function(req, res) {
 			
 		], function(err){
 			if (err) return next();
-			req.flash('success', 'Thank you for sending a request. This would be acted upon as soon as possible, kindlt wait for further steps from our end.');
+			req.flash('success', 'Thank you for sending a request. This would be acted upon as soon as possible, kindly wait for further steps from our end.');
             res.redirect('/createrequest');
 			
 		});

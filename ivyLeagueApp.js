@@ -1,14 +1,37 @@
 var keystone = require('keystone');
 var handlebars = require('express-handlebars');
-//require('keystone-nodemailer');
-//var xoauth2 = require('xoauth2');
-//var nodemailer=require('nodemailer');
-//var transporter = nodemailer.createTransport('smtps://mukesh.jayaram%40gmail.com:pass@smtp.gmail.com');
+var fs = require('fs');
+var path = require('path');
+var FileStreamRotator = require('file-stream-rotator');
+
+var logDirectory = path.join(__dirname, 'log');
+
+// ensure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+// create a rotating write stream
+var accessLogStream = FileStreamRotator.getStream({
+  date_format: 'DDMMYYYY',
+  filename: path.join(logDirectory, 'access-%DATE%.log'),
+  frequency: 'daily',
+  verbose: false
+});
+
+var logFilter = function(req, res) {
+  return res.statusCode < 400
+};
+
 
 keystone.init({
 
   'name': 'Skyline Ivy League',
-  
+  'env' : process.env.NODE_ENV || "development",
+  'port' : process.env.PORT || 3000,
+  'compress': true,
+  'logger' : 'combined',
+  'logger options': {
+    stream: accessLogStream
+  },
   'favicon': 'public/favicon.ico',
   'less': 'public',
   'static': ['public','upload'],
@@ -55,28 +78,5 @@ keystone.set('nav', {
     'Gallery':'Gallery',
     'Service Requests':'Services'
 });
-
-/*keystone.set('nav', {
-	'blogs': ['posts', 'post-categories', 'post-comments'],
-	'galleries': 'galleries',
-	'applications': 'applications',
-	'realestate': 'realestate',
-    'events': ['events','event-categories'],
-    'members': ['users', 'type']
-});*/
-
-/*keystone.set('email nodemailer', {
-    service: 'gmail',
-    auth: {
-        xoauth2: xoauth2.createXOAuth2Generator({
-                       user: 'ivyleagueownersassociation@gmail.com',
-            clientId: '524403321571-05qqcuipsl7ltji6s01aorbjbrg81u64.apps.googleusercontent.com',
-            clientSecret: 'FL8HPWGFFoxVsNwUbRfhrZ-8',
-            refreshToken:'1/BBNbOjzCGaycMwQ7urgKiBdCmy6SsO3G6UesxMKfbUE'
-            
-        })
-    }
-});*/
-
  
 keystone.start();

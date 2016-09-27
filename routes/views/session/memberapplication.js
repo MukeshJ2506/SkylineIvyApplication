@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
+var log  = require('../../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -90,7 +91,7 @@ exports = module.exports = function(req, res) {
 			
 		], function(err){
 			
-			if (err) return next();
+			if (err){log.error(err); return next();}
 			req.flash('success', 'Registration is successful. Please wait until Admin accepts your registration.');
             res.redirect('/');
 			

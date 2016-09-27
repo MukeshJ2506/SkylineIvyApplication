@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -46,6 +47,7 @@ exports = module.exports = function(req, res) {
 					newEnquiry = new Enquiry(enquiryData);
 				
 				newEnquiry.save(function(err) {
+                    if(err){log.error('Error while saving enquiry: '+err);}
 					return cb(err);
 				});
 			

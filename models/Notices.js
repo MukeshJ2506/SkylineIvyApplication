@@ -2,6 +2,7 @@ var keystone = require('keystone');
 var moment = require('moment');
 var Types = keystone.Field.Types;
 var transporter = require('../helpers/emailBot');
+var log  = require('../helpers/logger');
 
 
 /**
@@ -31,7 +32,7 @@ Notices.schema.pre('save', function(next) {
     if(notice.isNew){
         keystone.list('User').model.find({}, {email:1,name:1,_id:0}).exec(function(err, users) {
 		
-            if (err) return callback(err);
+            if (err){log.error("Error inside Notices while accessing User: "+err); return callback(err);}
              var emailStr = "";
             users.forEach(function(item,index){
                 emailStr += item.email+",";
@@ -47,10 +48,10 @@ Notices.schema.pre('save', function(next) {
             // send mail with defined transport object 
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){
-                    console.log(error);
+                    log.error("From Notices: "+error);
                     return error;
                 }
-                console.log('Message sent: ' + info.response);
+                log.info('Message sent from Notices: ' + info.response);
                 return true;
             });
         });

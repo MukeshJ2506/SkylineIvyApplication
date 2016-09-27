@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	if (!req.user) {
@@ -39,13 +40,14 @@ exports = module.exports = function(req, res) {
 					newPost = new Post(postData);
 				
 				newPost.save(function(err) {
+                    if(err){log.error('Error in saving post: '+ err);}
 					return cb(err);
 				});
 			
 			}
 			
 		], function(err){
-			if (err) return next();
+			if (err){log.error('Error while writing a post:' + err); return next();}
 			req.flash('success', 'Thank you for writing a post. Once admin approves this would be added in Blogs section.');
             res.redirect('/blog');
 			

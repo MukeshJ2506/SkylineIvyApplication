@@ -2,6 +2,7 @@ var keystone = require('keystone'),
 	async = require('async'),
     path = require('path'),
     fs = require('fs');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	if (!req.user) {
@@ -50,7 +51,7 @@ exports = module.exports = function(req, res) {
                     if(post == null){
                         if (fileRef !=""){imageUploadhelper(fileRefalt.images);}
                         newPost.save(function(err) {
-                            console.log(err)
+                            log.error('Error while saving an advert: '+err)
                             return cb(err);
                         });
                     }else{
@@ -63,7 +64,7 @@ exports = module.exports = function(req, res) {
 			}
 			
 		], function(err){
-			if (err) return next();
+			if (err){log.error('error while posting an advert : ' +err); return next();}
 			req.flash('success', 'Thank you for posting an advert. This would be listed in the Real Estate section.');
             res.redirect('/realestate');
 			
@@ -80,13 +81,13 @@ function imageUploadhelper(fileobj){
         extension = '.'+fileobj.extension.toLowerCase();
     if (extension === '.png' || extension === '.jpg') {
         copyFile(tempPath,targetPath,function(err) {
-            if (err){ console.log(err);return false;}
-            console.log("Upload completed!");
+            if (err){ log.error('Error while uploading image: ' + err);return false;}
+            log.info("Upload completed!");
         });
     } else {
         fs.unlink(tempPath, function (err) {
-            if (err) console.log(err);
-            console.error("Only .png & .jpg files are allowed!");
+            if (err) log.error(err);
+            log.error("Only .png & .jpg files are allowed!");
         })
                   
 }}

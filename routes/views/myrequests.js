@@ -1,6 +1,7 @@
 var keystone = require('keystone'),
 	_ = require('lodash'),
 	moment = require('moment');
+var log  = require('../../helpers/logger');
 
 exports = module.exports = function(req, res) {
 	
@@ -27,6 +28,7 @@ exports = module.exports = function(req, res) {
 			locals.data.requests = results.results;
             delete results.results;
             locals.data.pagination = results;
+            if(err){log.error(err);}
 			next(err);
 		});
 	

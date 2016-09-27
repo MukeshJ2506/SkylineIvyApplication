@@ -1,6 +1,6 @@
 node_modules
 updates
-upload
+upload/gallery/*
+upload/realestate/*
 public/bower_components
-test.js
 log/*

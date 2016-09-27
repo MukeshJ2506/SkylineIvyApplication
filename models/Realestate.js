@@ -1,5 +1,6 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
+var log  = require('../helpers/logger');
 
 /**
  * Post Model
@@ -29,11 +30,11 @@ Realestate.add({
             'image/jpeg', 'image/png'
         ],
         filename: function(item, file){
-            console.log(item.files);
+            log.info(item.files);
             return item.id + '.' + file.extension
         },
         format: function(item, file){
-            console.log(file.originalname)
+            log.info(file.originalname)
             return '<img src="' + file.href + '" style="max-width: 300px">'
         }
     }

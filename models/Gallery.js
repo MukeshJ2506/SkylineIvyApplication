@@ -1,6 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var fs = require('fs');
+var log  = require('../helpers/logger');
 
 /**
  * Gallery Model
@@ -22,7 +23,7 @@ Gallery.add({
             'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml'
         ],
         filename: function(item, file){
-            console.log(item.files);
+            log.info(item.files);
             return item.id + '.' + file.extension
         },
         format: function(item, file){

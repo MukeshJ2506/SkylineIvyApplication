@@ -1,5 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
+var log  = require('../../../helpers/logger');
 
 exports = module.exports = function(req, res) {
     
@@ -38,10 +39,10 @@ exports = module.exports = function(req, res) {
 		var onSuccess = function(user) {
             if(user.isVerified){
                 if (req.body.target && !/join|signin/.test(req.body.target)) {
-                    console.log('[signin] - Set target as [' + req.body.target + '].');
+                    log.info('[signin] - Set target as [' + req.body.target + '].');
                     res.redirect(req.body.target);
                 } else {
-                    console.log("Successful login");
+                    log.info("Successful login");
                     res.redirect('/');
                 }
             }else{
