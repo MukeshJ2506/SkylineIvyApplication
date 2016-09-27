@@ -14,7 +14,7 @@
     "express-handlebars": "^3.0.0",
     "file-stream-rotator": "0.0.7",
     "handlebars": "^4.0.5",
-    "keystone": "latest",
+    "keystone": "0.3.19",
     "moment": "^2.13.0",
     "nodemailer": "^2.4.2",
     "nodemailer-express-handlebars": "^2.0.0",
