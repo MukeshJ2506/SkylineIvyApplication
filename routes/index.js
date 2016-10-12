@@ -1,5 +1,5 @@
 var keystone = require('keystone'),
-    middleware = require('./middleware'),
+    middleware = require('./middleware.js'),
     importRoutes = keystone.importer(__dirname);
 // Common Middleware
 keystone.pre('routes', middleware.initErrorHandlers);

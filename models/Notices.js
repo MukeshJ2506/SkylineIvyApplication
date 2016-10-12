@@ -1,8 +1,8 @@
 var keystone = require('keystone');
 var moment = require('moment');
 var Types = keystone.Field.Types;
-var transporter = require('../helpers/emailbot');
-var log  = require('../helpers/logger');
+var transporter = require('../helpers/emailbot.js');
+var log  = require('../helpers/logger.js');
 
 
 /**

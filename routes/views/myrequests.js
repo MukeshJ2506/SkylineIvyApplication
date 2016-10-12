@@ -1,7 +1,7 @@
 var keystone = require('keystone'),
 	_ = require('lodash'),
 	moment = require('moment');
-var log  = require('../../helpers/logger');
+var log  = require('../../helpers/logger.js');
 
 exports = module.exports = function(req, res) {
 	

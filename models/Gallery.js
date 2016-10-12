@@ -1,7 +1,7 @@
 var keystone = require('keystone');
 var Types = keystone.Field.Types;
 var fs = require('fs');
-var log  = require('../helpers/logger');
+var log  = require('../helpers/logger.js');
 
 /**
  * Gallery Model

@@ -1,6 +1,6 @@
 var keystone = require('keystone'),
 	async = require('async');
-var log  = require('../../helpers/logger');
+var log  = require('../../helpers/logger.js');
 
 exports = module.exports = function(req, res) {
 	

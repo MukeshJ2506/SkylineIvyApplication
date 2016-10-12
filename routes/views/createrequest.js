@@ -2,7 +2,7 @@ var keystone = require('keystone'),
 	async = require('async'),
     path = require('path'),
     fs = require('fs');
-var log  = require('../../helpers/logger');
+var log  = require('../../helpers/logger.js');
 
 exports = module.exports = function(req, res) {
 	if (!req.user) {

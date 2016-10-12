@@ -1,6 +1,6 @@
 var keystone = require('keystone'),
 	User = keystone.list('User');
-var log  = require('../../../helpers/logger');
+var log  = require('../../../helpers/logger.js');
 
 exports = module.exports = function(req, res) {
 	var view = new keystone.View(req, res),

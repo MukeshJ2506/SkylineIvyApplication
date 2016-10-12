@@ -2,8 +2,8 @@ var keystone = require('keystone'),
     async = require('async'),
     crypto = require('crypto'),
     Types = keystone.Field.Types;
-var transporter = require('../helpers/emailbot');
-var log  = require('../helpers/logger');
+var transporter = require('../helpers/emailbot.js');
+var log  = require('../helpers/logger.js');
  
 var User = new keystone.List('User', {
 	track: true,

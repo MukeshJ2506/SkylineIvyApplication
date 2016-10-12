@@ -1,6 +1,6 @@
 var _ = require('underscore'),
     keystone = require('keystone');
-var log  = require('../helpers/logger');
+var log  = require('../helpers/logger.js');
 /**
     Initialises the standard view locals.
     Include anything that should be initialised before route controllers are executed.
