@@ -1,1 +1,1 @@
-node ivyLeagueApp
+web: node ivyLeagueApp.js
