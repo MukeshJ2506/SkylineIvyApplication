@@ -49,7 +49,7 @@ keystone.init({
   'emails': 'templates/emails',    
   
   'auto update': true,
-  'mongo': process.env.MONGO_URI || 'mongodb://localhost/skyline-ivy-league-app',
+  'mongo': process.env.MONGO_URI || 'mongodb://MUKK1ORC:MUKK1ORC@ds057066.mlab.com:57066/skyline-ivy-league-app',//'mongodb://localhost/skyline-ivy-league-app',
   
   'session': true,
   'session store': 'mongo',
