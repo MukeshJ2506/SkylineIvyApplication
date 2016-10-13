@@ -32,4 +32,4 @@
 				{{/each}}
                 
 			</div>
-	{{>pagination}}
+	  {{#ifeq data.posts.length 0}}{{else}}{{>pagination}}{{/ifeq}}

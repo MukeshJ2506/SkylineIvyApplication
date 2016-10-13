@@ -1,5 +1,6 @@
 {{!< default}}
-	<h3>Events at IvyLeague</h3>
+	<h3>Notices at IvyLeague</h3>
+            {{#ifeq data.notices.length 0}}<h5 class="text-weight-normal">There are no MoMs to be displayed now.</h5>{{/ifeq}}
 			{{# each data.notices}}
             <div class="panel panel-primary">
                 <div class="panel-heading"> 
@@ -13,4 +14,4 @@
                 </div> 
             </div>
             {{/each}}
-    {{>pagination}}
+     {{#ifeq data.notices.length 0}}{{else}}{{>pagination}}{{/ifeq}}
