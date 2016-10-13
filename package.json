@@ -9,6 +9,7 @@
   "dependencies": {
     "bower": "latest",
     "cloudinary":"latest",
+    "lodash":"latest",
     "async": "^2.0.0-rc.5",
     "bunyan": "^1.8.1",
     "connect-mongo": "^1.2.0",
