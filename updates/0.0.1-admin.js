@@ -15,6 +15,18 @@ exports = module.exports = function(done) {
         isAssociation:true,
         stayType:"Owner",
         mobileNo:8129377669
+    },{
+        name: { first: 'Ivy', last: 'Association' },
+        email: 'ivyleagueownersassociation@gmail.com',
+        password: 'admin',
+        userRole: 'Admin',
+        apartmentNo: '1A',
+        towerName: 'Columbia',
+        isVerified:true,
+        isAdmin:true,
+        isAssociation:true,
+        stayType:"Owner",
+        mobileNo:0000000000
     }).save(done);
     
 };
