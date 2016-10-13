@@ -1,0 +1,10 @@
+require('./users.js');
+require('./events.js');
+require('./notices.js');
+require('./minutes.js');
+require('./blogs.js');
+require('./enquiry.js');
+require('./realestate.js');
+require('./keycontacts.js');
+require('./gallery.js');
+require('./services.js');

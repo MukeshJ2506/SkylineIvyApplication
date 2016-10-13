@@ -1,0 +1,15 @@
+<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;font-weight:bold;" lang="x-size-16">A service request was just submitted, with the following details:</p>
+{{requestor}}
+	<p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">From:
+	{{#if name.first}}
+		<strong>{{name.first}} {{name.last}}</strong>
+	{{/if}}
+	
+	</p>
+    <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">Request Type: {{requestType}}</p>
+
+    <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">
+        <strong>Description :</strong><br/>
+		{{{description}}}
+    </p>
+   <p style="margin-top:0;margin-bottom:0;font-size:16px;line-height:24px;font-family:PT Sans,Trebuchet MS,sans-serif;" lang="x-size-16">Created on: <strong>{{formatDate requestDate}}</strong></p>

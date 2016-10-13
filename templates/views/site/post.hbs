@@ -1,0 +1,19 @@
+{{!< default}}
+			<article class="blog-post">
+                {{#ifeq prevLink 'myblogs'}}
+                    <p><a href="/me/myblogs">&larr; back to my blogs</a></p>
+                {{else}}
+                    <p><a href="/blog">&larr; back to blogs</a></p>
+                {{/ifeq}}
+				<hr>
+                <div class="blog-post-body">
+					<h2>{{data.post.title}}</h2>
+					<h5 class="post-meta">
+						{{#if data.post.author.name.first}}By {{data.post.author.name.first}} {{data.post.author.name.last}}{{/if}}
+                        &nbsp;/&nbsp;Published on : {{formatDate data.post.publishedDate}}
+					</h5>
+                    <div class="blog-post-text">
+                        {{{data.post.content.extended}}}
+                    </div>
+                </div>
+			</article>

@@ -1,0 +1,16 @@
+{{!< default}}
+	<h3>Submit a request.</h3>
+			<form method="post" action="/createrequest">
+				<input type="hidden" name="action" value="Submit Request">
+                <div class="form-group">
+                    <label>Request Type</label>
+                    <select name="requestType" class="form-control" required>
+                    <option value="">Type</option><option value="Service">Service</option><option value="Grievance">Grievance</option><option value="Suggestion">Suggestion</option></select></div>
+				<div class="form-group {{#if validationErrors.message}}has-error{{/if}} ">
+					<label>Description</label>
+					<textarea required name="description" placeholder="Please enter your service description here." rows="4" class="form-control">{{formData.description}}</textarea>
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-block btn-primary btn-submit  btn-raised">Submit Request</button>
+				</div>
+			</form>

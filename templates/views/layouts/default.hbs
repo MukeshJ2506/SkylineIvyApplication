@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>{{#if title}}{{title}}{{else}}Skyline Ivy League{{/if}}</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <meta name="keywords" content="Skyline, Ivy, League, Ivy League, Infopark, Smart City, Kakkanad, Skyline Ivy League, apartments Kochi, Luxury Apartments Kochi, Luxury Villas Kochi, Luxury Flats Kochi, Villas Kochi, Apartments kochi,  Kochi flat, kochi apartment, cochin apartment, apartment in kerala, apartment in kochi, kerala apartment, builder in kochi, kochi builders, builders in kochi, builders cochin, flats in kochi, apartments in kochi, apartments in kerala, kerala flats, apartments in cochin, builder in cochin, builders in cochin, flats in kerala, kerala, builders in kerala, cochin real estate, kochi real estate, real estate cochin, real estate in kochi, real estate in cochin, real estate in kerala, Apartments in Kakkanad, Apartments in, Luxury Apartments , Luxury Villas, Luxury Flats,Luxury, Yale, Princeton, Columbia, Harvard, Sylvania, Cornell, Brown"/>
+        <meta name="description" content="Skyline Ivy League, is a luxury apartment complex situated at a serene location in Edachira, Kakkanad, Kochi. The epicentre of the complex is a vast landscaped lawn dotted with luxurious amenities like swimming pool, barbecue spot and amphitheatre, movie theatre, gym, club house, game area, squash court, etc. Surrounding this exotic space will be six blocks (seven blocks in sometime) of apartments. Six acres of lush green space, out of which more than 40% is kept as open area to provide you with a green bung."/>
+        <meta name="robots" content="index, follow">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+		<!--link href="/styles/site.min.css" rel="stylesheet"-->
+        <link href="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css" rel="stylesheet">
+        <link href="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap-material-design/dist/css/ripples.min.css" rel="stylesheet">
+        <link href="{{#if doubleRoot}}../..{{/if}}/styles/site.css" rel="stylesheet">
+        {{#ifeq section "gallery"}}
+        <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+        <link rel="stylesheet" href="/bower_components/blueimp-bootstrap-image-gallery/css/bootstrap-image-gallery.min.css">
+        {{/ifeq}}
+        {{#ifeq section "events"}}
+        <link rel="stylesheet" href="/bower_components/bootstrap-calendar/css/calendar.min.css">
+        <link href='/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet' />
+        <link href='/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print' />
+        {{/ifeq}}
+        <script src="{{#if doubleRoot}}../..{{/if}}/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+        <script src="{{#if doubleRoot}}../..{{/if}}/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+		{{!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+		//- Safely remove this block if you are not targeting IE8 --}}
+		<!--[if lt IE 9]>
+			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
+			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	</head>
+	<body>
+		<header id="header" role="header">
+			<div class="container">
+				<nav role="navigation" class="navbar navbar-inverse navbar-fixed-top">
+                    <div class="bs-component">
+                    <div class="container-fluid">
+                    <div class="navbar-header">
+                      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                      </button>
+                      <a class="navbar-brand" href="#"><img src="/images/sitelogo.jpg" class="logo"/></a>
+                    </div>
+					<div id="navbar" class="navbar-collapse collapse navbar-inverse-collapse" >
+							<ul class="nav navbar-nav" >
+                                    {{#if user.isVerified}}
+                                            {{# each navLinksUser}}
+                                                {{#ifeq ../user.stayType 'Owner'}}
+                                                <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                    <a href="{{ href }}">{{ label }}</a>
+                                                </li>
+                                                {{else}}
+                                                    {{#ifeq key 'minutes'}}
+                                                    {{else}}
+                                                        <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                            <a href="{{ href }}">{{ label }}</a>
+                                                        </li>
+                                                    {{/ifeq}}
+                                                {{/ifeq}}
+                                            {{/each}}
+                                    {{else}}
+                                        {{# each navLinksGuest}}
+                                            <li {{#ifeq ../section key}}class="active"{{else}}{{/ifeq}}>
+                                                <a href="{{ href }}">{{ label }}</a>
+                                            </li>
+                                        {{/each}}
+                                    {{/if}}
+                            </ul>
+							<ul class="nav navbar-nav navbar-right" >
+								{{#if user.isVerified}}
+                                 <li role="presentation" class="dropdown">
+                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> {{user.name.first}} {{user.name.last}}  <span class="caret"></span>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="/me">My Profile</a></li> 
+                                            <li><a href="/me/myblogs">My Blogs</a></li>
+                                            <li><a href="/me/myrequests">My Requests</a></li>
+                                            <li><a href="/me/myrealestate">My Real Estate</a></li>
+                                            <li><a href="/me/changepassword">Change Password</a></li>
+                                           <li><a href="/signout">Sign Out</a></li>
+                                        </ul>
+                                     </a></li>								
+								{{else}}
+								<li><a href="/signin">Sign In</a></li>
+                                <li><a href="/memberapplication">Apply Membership</a></li>
+								{{/if}}
+                            </ul>
+						</div>
+                    </div>
+                    </div>
+				</nav>
+			</div>
+		</header>
+		<div id="body" role="content">
+            <div class="container">
+			<!--
+				Flash messages allow you to display once-off status messages to users, e.g. form
+				validation errors, success messages, etc
+			-->
+			{{#if messages}}
+			<div id="flash-messages">
+				{{#if messages.info}}
+				<div class="alert alert-info">
+						{{ messages.info}}
+				</div>
+				{{/if}}
+				{{#if messages.success}}
+				<div class="alert alert-success">
+						{{ messages.success}}
+				</div>
+				{{/if}}
+				{{#if messages.warning}}
+				<div class="alert alert-warning">
+						{{ messages.warning}}
+				</div>
+				{{/if}}
+				{{#if messages.error}}
+				<div class="alert alert-danger">
+						{{ messages.error}}
+				</div>
+				{{/if}}
+			</div>
+			{{/if}}
+			<!-- The content block should contain the body of your template's content-->
+			{{{body}}}
+            </div>
+		</div>
+			<footer class="footer navbar-fixed-bottom">
+                {{#ifeq user.userRole "Admin"}}<p>For admin view please click, <a href="/keystone">here</a>.</p>{{/ifeq}}
+				<p>2016 &copy; of Skyline IvyLeague Apartments, Edachira, Kakkanad, Kochi.</p>
+			</footer>
+		
+	
+        {{#ifeq section "gallery"}}
+        <script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+		<script src="/bower_components/blueimp-bootstrap-image-gallery/js/bootstrap-image-gallery.min.js"></script>
+        {{/ifeq}}
+        {{#ifeq section "events"}}
+            <script src='/bower_components/moment/min/moment.min.js'></script>
+            <script src='/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+        {{/ifeq}}
+        
+        <script>
+            $.material.init()
+        </script>
+        
+	</body>
+</html>

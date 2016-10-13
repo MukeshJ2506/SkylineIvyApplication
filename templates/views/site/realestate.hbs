@@ -1,0 +1,32 @@
+{{!< default}}
+	<h3>Real Estate Adverts</h3>
+			{{#ifeq data.realestate.length 0}}<h5 class="text-weight-normal">There are no Real Estate adverts at this time.</h5>{{/ifeq}}
+             {{#if user.isVerified}}{{#ifeq user.stayType 'Owner'}}<h4 class="text-weight-normal"><a href="/realestate/create">Post an Advert</a></h4>{{/ifeq}}{{/if}}
+			<div class="blog">
+				{{# each data.realestate}}
+                <div class="panel panel-primary">
+                <div class="panel-heading"> 
+                    <h3 class="panel-title">{{{heading}}}</h3> 
+                </div> 
+                <div class="panel-body">
+                    <h4>For {{adType}}</h4>
+					<p class=" text-muted">
+							{{#if advertisor.name.first}}Owner : {{advertisor.name.first}} {{advertisor.name.last}}{{/if}}
+					</p>
+                    <p class=" text-muted">
+                        {{#if advertisor.mobileNo}}Contact Number: <a href="tel:{{advertisor.mobileNo}}">{{advertisor.mobileNo}}</a> {{/if}}
+					</p>
+                    <p class=" text-muted">
+							{{#if advertisor.email}}Contact Email: <a href="mailto:{{advertisor.email}}">{{advertisor.email}}</a> {{/if}}
+					</p>
+					<p>{{{description}}}</p>
+                    
+                    <p>
+                        <img src="{{imageURLformatter images.path images.filename}}"  alt="Image" class="img-rounded img-thumbnail realestate-thumb"/>
+                    </p>
+				</div>
+                </div>
+				{{/each}}
+                
+			</div>
+	{{#ifeq data.realestate.length 0}}{{else}}{{>pagination}}{{/ifeq}}

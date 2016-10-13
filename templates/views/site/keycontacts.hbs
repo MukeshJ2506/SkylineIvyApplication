@@ -1,0 +1,15 @@
+{{!< default}}
+	<h3>Key Contacts at IvyLeague</h3>
+			{{# each data.keycontacts}}
+            <div class="panel panel-primary">
+                <div class="panel-heading"> 
+                    <h3 class="panel-title">Name of Contact: {{contactName.first}} {{contactName.last}}</h3> 
+                </div> 
+                <div class="panel-body"> 
+                    <h5><strong>Contact Number:</strong> <a href="tel:{{contactNo}}">{{contactNo}}</a></h5>
+                    <h5><strong>Profile Description: </strong></h5>
+                    <div>{{{description}}}</div> 
+                </div> 
+            </div>
+            {{/each}}
+ {{#ifeq data.keycontacts.length 0}}{{else}}{{>pagination}}{{/ifeq}}

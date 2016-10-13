@@ -1,0 +1,36 @@
+{
+  "name": "skyline-ivy-league-app",
+  "version": "0.0.1",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MukeshJ2506/SkylineIvyApplication.git"
+  },
+  "dependencies": {
+    "bower": "latest",
+    "cloudinary":"latest",
+    "lodash":"latest",
+    "async": "^2.0.0-rc.5",
+    "bunyan": "^1.8.1",
+    "connect-mongo": "^1.2.0",
+    "crypto": "0.0.3",
+    "express-handlebars": "^3.0.0",
+    "file-stream-rotator": "0.0.7",
+    "handlebars": "^4.0.5",
+    "keystone": "0.3.19",
+    "moment": "^2.13.0",
+    "nodemailer": "^2.4.2",
+    "nodemailer-express-handlebars": "^2.0.0",
+    "underscore": "latest",
+    "xoauth2": "^1.1.0"
+  },
+  "engines": {
+    "node": "~4.2.0",
+    "npm": "~2.14.3"
+  },
+  "scripts": {
+    "start": "node ivyLeagueApp",
+    "postinstall": "bower install",
+    "prestart": "npm install"
+  }
+}

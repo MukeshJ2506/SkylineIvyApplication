@@ -1,0 +1,24 @@
+{{!< default}}
+	<h3>Create an Advert.</h3>
+			<form method="post" action="/realestate/create" enctype="multipart/form-data">
+				<input type="hidden" name="action" value="Submit Advert">
+                <div class="form-group">
+                    <label>Advert Type</label>
+                    <select name="adType" class="form-control" required>
+                    <option value="">Type</option><option value="Rent">Rent</option><option value="Sale">Sale</option><option value="Lease">Lease</option></select></div>
+				<div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
+					<label>Advert Heading</label>
+					<input type="text" name="heading" required class="form-control" value="{{formData.heading}}">
+				</div>
+				<div class="form-group {{#if validationErrors.message}}has-error{{/if}} ">
+					<label>Description</label>
+					<textarea required name="description" placeholder="Please enter your advert description here." rows="4" class="form-control">{{formData.description}}</textarea>
+				</div>
+                <div class="form-group {{#if validationErrors.name}}has-error{{/if}}">
+					<label>Images (if any)</label>
+					<input type="file" name="images" class="form-control" value="{{formData.images}}">
+				</div>
+				<div class="form-actions">
+					<button type="submit" class="btn btn-block btn-primary btn-submit btn-raised">Submit Advert</button>
+				</div>
+			</form>
