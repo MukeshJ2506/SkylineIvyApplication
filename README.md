@@ -1,4 +1,7 @@
 # SkylineIvyApplication
+<<<<<<< HEAD
+Application built for skyline ivy league
+=======
 
 ## Application built for skyline ivy league, estate management and other community interactions.
 
@@ -24,3 +27,4 @@
 8. go to a new command line and run mongod and start the mongoDB server.
 
 9. forever start ivyLeagueApp.js/node ivyLeagueApp.js (in dev)
+>>>>>>> f33d0eef7dc1ba2b71a740cee7db8af1911c7d3c
