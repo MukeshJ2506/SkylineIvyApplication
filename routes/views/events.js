@@ -58,7 +58,7 @@ function formatEventObj(element,array) {
             bufElement.dom =  [ element.frequencyDetail ];
             break;
          case "Occasion":
-            bufElement.dow =  [ element.frequencyDetail ];
+            //bufElement.dow =  [ element.frequencyDetail ];
             break;
         default:
             break;
